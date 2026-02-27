@@ -78,5 +78,6 @@
             
             document.getElementById('status').innerText = "Статус: Фильтр Canny применен успешно!";
         }
+    </script>
 </body>
 </html>
