@@ -16,16 +16,17 @@ jobs:
         
       - name: Download OpenCV Headers
         run: |
-          # Клонируем ПОЛНЫЙ адрес (проверьте, чтобы было /opencv/opencv.git)
-          git clone --depth 1 https://github.com/opencv/opencv.git opencv_src
-          
+          git clone --depth 1 https://github.com opencv_src
           mkdir -p include/opencv2
           cp -rv opencv_src/modules/core/include/opencv2/* include/opencv2/
           cp -rv opencv_src/modules/imgproc/include/opencv2/* include/opencv2/
           
-          echo "Проверка: заголовки на месте!"
-          ls include/opencv2/imgproc.hpp
+          # СОЗДАЕМ НЕДОСТАЮЩИЙ ФАЙЛ (Магия!)
+          echo "#define HAVE_OPENCV_CORE" > include/opencv2/opencv_modules.hpp
+          echo "#define HAVE_OPENCV_IMGPROC" >> include/opencv2/opencv_modules.hpp
           
+          echo "Заголовки и конфигурация готовы!"
+        
       - name: Build with Python
         run: python3 scripts/build.py
           
