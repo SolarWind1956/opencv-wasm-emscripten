@@ -21,3 +21,4 @@ jobs:
           path: |
             index.js
             index.wasm
+            
