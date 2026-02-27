@@ -16,17 +16,17 @@ jobs:
         
       - name: Download OpenCV Headers
         run: |
-          # Клонируем только заголовки (самый быстрый и надежный способ)
-          git clone --depth 1 --sparse https://github.com
-          cd opencv
-          git sparse-checkout set modules/core/include modules/imgproc/include
-          cd ..
+          # Клонируем репозиторий OpenCV целиком (только заголовки через фильтр)
+          git clone --depth 1 https://github.com opencv_src
           
-          # Копируем файлы в нашу структуру проекта
+          # Создаем структуру и копируем ВСЕ заголовки из модулей core и imgproc
           mkdir -p include/opencv2
-          cp -r opencv/modules/core/include/opencv2/* include/opencv2/
-          cp -r opencv/modules/imgproc/include/opencv2/* include/opencv2/
-          echo "OpenCV Headers are ready!"
+          cp -rv opencv_src/modules/core/include/opencv2/* include/opencv2/
+          cp -rv opencv_src/modules/imgproc/include/opencv2/* include/opencv2/
+          
+          echo "Содержимое папки include:"
+          ls -R include/opencv2
+
 
 
 
