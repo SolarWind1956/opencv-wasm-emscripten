@@ -21,3 +21,10 @@ The project focuses on production-style automation, reproducibility, and lightwe
 1. **Gemini        (Google AI)**        - Thought Partner
 2. **ChatGPT       (OpenAI)**           - Thought Partner
 3. **Sergej Heckel (@SolarWind1956)**   - Lead Engineer & Architect (C++, OpenCV).
+## 📚 Documentation
+
+For a deeper dive into the project, check out the following sections:
+
+* [System Architecture](./docs/architecture.md) — how everything works internally.
+* [CI/CD Pipeline](./docs/ci_pipeline.md) — automation and build details.
+* [WebAssembly Notes](./docs/wasm_notes.md) — browser-based implementation details.
