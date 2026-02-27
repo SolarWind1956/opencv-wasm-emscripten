@@ -10,6 +10,7 @@
 </head>
 <body>
     <h1>OpenCV-WASM EcoMonitor</h1>
+    <canvas id="outputCanvas" style="max-width: 90%; border: 2px solid #333;"></canvas>
     <div id="status">Статус: Ожидание загрузки WebAssembly...</div>
     
     <!-- Сюда в будущем подключится магия OpenCV -->
@@ -38,12 +39,44 @@
                 };
             }
         };
-    
         function runDemo(monitor, img) {
             // Здесь будет магия передачи данных из JS в C++
             // (создание холста Canvas, получение ImageData и вызов monitor.processCanny)
-        }
-    </script>
 
+            const canvas = document.getElementById('outputCanvas');
+            const ctx = canvas.getContext('2d');
+        
+            // Настраиваем размер холста под картинку
+            canvas.width = img.width;
+            canvas.height = img.height;
+        
+            // 1. Рисуем картинку на холст и забираем пиксели (RGBA)
+            ctx.drawImage(img, 0, 0);
+            const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+            const pixels = imageData.data;
+        
+            // 2. Выделяем память внутри WASM (Heap) для этих пикселей
+            const numBytes = pixels.length;
+            const ptr = Module._malloc(numBytes); // Выделяем байты
+            
+            // 3. Копируем пиксели из JS в выделенную память WASM
+            Module.HEAPU8.set(pixels, ptr);
+        
+            // 4. ВЫЗЫВАЕМ НАШ C++ КЛАСС! 
+            // (адрес, ширина, высота, порог1, порог2)
+            monitor.processCanny(ptr, canvas.width, canvas.height, 50, 150);
+        
+            // 5. Забираем измененные данные обратно из той же памяти
+            const resultView = new Uint8ClampedArray(Module.HEAPU8.buffer, ptr, numBytes);
+            const finalImageData = new ImageData(resultView, canvas.width, canvas.height);
+        
+            // 6. Отрисовываем результат на экран
+            ctx.putImageData(finalImageData, 0, 0);
+        
+            // 7. Освобождаем память (важно для предотвращения утечек!)
+            Module._free(ptr);
+            
+            document.getElementById('status').innerText = "Статус: Фильтр Canny применен успешно!";
+        }
 </body>
 </html>
