@@ -16,7 +16,7 @@ jobs:
         
       - name: Download OpenCV Headers
         run: |
-          git clone --depth 1 https://github.com opencv_src
+          git clone --depth 1 https://github.com/opencv/opencv_src
           mkdir -p include/opencv2
           cp -rv opencv_src/modules/core/include/opencv2/* include/opencv2/
           cp -rv opencv_src/modules/imgproc/include/opencv2/* include/opencv2/
