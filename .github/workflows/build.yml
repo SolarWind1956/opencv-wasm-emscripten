@@ -25,7 +25,10 @@ jobs:
           
           echo "Проверка: заголовки на месте!"
           ls include/opencv2/imgproc.hpp
-
+          
+      - name: Build with Python
+        run: python3 scripts/build.py
+          
       - name: Upload Build Artifacts
         uses: actions/upload-artifact@v4
         with:
