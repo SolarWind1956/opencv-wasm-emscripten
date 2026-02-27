@@ -1,1 +1,84 @@
 
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>OpenCV-WASM EcoMonitor</title>
+    <style>
+        body { font-family: sans-serif; display: flex; flex-direction: column; align-items: center; background: #f0f2f5; }
+        #status { margin: 20px; padding: 10px; border-radius: 5px; background: #fff; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+    </style>
+</head>
+<body>
+    <h1>OpenCV-WASM EcoMonitor</h1>
+    <canvas id="outputCanvas" style="max-width: 90%; border: 2px solid #333;"></canvas>
+    <div id="status">Статус: Ожидание загрузки WebAssembly...</div>
+    
+    <!-- Сюда в будущем подключится магия OpenCV -->
+    <script async src="index.js"></script>
+    <script>
+      // Скрипт-заглушка для проверки
+      console.log("Интерфейс готов к работе.");
+    </script>
+    <script>
+        var Module = {
+            onRuntimeInitialized: function() {
+                console.log("WASM Модуль загружен");
+                
+                // 1. Инициализируем наш C++ движок
+                const monitor = new Module.EcoMonitor();
+                console.log("Движок EcoMonitor готов!");
+    
+                // 2. Загружаем картинку
+                const img = new Image();
+                img.src = 'data/apple.jpg'; // Убедитесь, что путь верный
+                
+                img.onload = function() {
+                    console.log("Картинка загружена, запускаем обработку...");
+                    // Здесь мы вызовем функцию, которая передаст пиксели в monitor.processCanny
+                    runDemo(monitor, img); 
+                };
+            }
+        };
+        function runDemo(monitor, img) {
+            // Здесь будет магия передачи данных из JS в C++
+            // (создание холста Canvas, получение ImageData и вызов monitor.processCanny)
+
+            const canvas = document.getElementById('outputCanvas');
+            const ctx = canvas.getContext('2d');
+        
+            // Настраиваем размер холста под картинку
+            canvas.width = img.width;
+            canvas.height = img.height;
+        
+            // 1. Рисуем картинку на холст и забираем пиксели (RGBA)
+            ctx.drawImage(img, 0, 0);
+            const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+            const pixels = imageData.data;
+        
+            // 2. Выделяем память внутри WASM (Heap) для этих пикселей
+            const numBytes = pixels.length;
+            const ptr = Module._malloc(numBytes); // Выделяем байты
+            
+            // 3. Копируем пиксели из JS в выделенную память WASM
+            Module.HEAPU8.set(pixels, ptr);
+        
+            // 4. ВЫЗЫВАЕМ НАШ C++ КЛАСС! 
+            // (адрес, ширина, высота, порог1, порог2)
+            monitor.processCanny(ptr, canvas.width, canvas.height, 50, 150);
+        
+            // 5. Забираем измененные данные обратно из той же памяти
+            const resultView = new Uint8ClampedArray(Module.HEAPU8.buffer, ptr, numBytes);
+            const finalImageData = new ImageData(resultView, canvas.width, canvas.height);
+        
+            // 6. Отрисовываем результат на экран
+            ctx.putImageData(finalImageData, 0, 0);
+        
+            // 7. Освобождаем память (важно для предотвращения утечек!)
+            Module._free(ptr);
+            
+            document.getElementById('status').innerText = "Статус: Фильтр Canny применен успешно!";
+        }
+    </script>
+</body>
+</html>
