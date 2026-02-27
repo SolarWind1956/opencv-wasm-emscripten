@@ -17,7 +17,7 @@ jobs:
       - name: Download OpenCV Headers
         run: |
           # Клонируем ПОЛНЫЙ адрес (проверьте, чтобы было /opencv/opencv.git)
-          git clone --depth 1 https://github.com/opencv/opencv.git
+          git clone --depth 1 https://github.com/opencv/opencv.git opencv_src
           
           mkdir -p include/opencv2
           cp -rv opencv_src/modules/core/include/opencv2/* include/opencv2/
