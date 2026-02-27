@@ -25,6 +25,6 @@ The project focuses on production-style automation, reproducibility, and lightwe
 
 For a deeper dive into the project, check out the following sections:
 
-* [System Architecture](./docs/architecture.md) — how everything works internally.
-* [CI/CD Pipeline](./docs/ci_pipeline.md) — automation and build details.
-* [WebAssembly Notes](./docs/wasm_notes.md) — browser-based implementation details.
+* [System Architecture](./docs/architecture.md)   - how everything works internally.
+* [CI/CD Pipeline](./docs/ci_pipeline.md)         - automation and build details.
+* [WebAssembly Notes](./docs/wasm_notes.md)       - browser-based implementation details.
