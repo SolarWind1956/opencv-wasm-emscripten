@@ -21,11 +21,11 @@ public:
         Mat frame(height, width, CV_8UC4, data); 
         
         // Преобразование в ЧБ и поиск границ
-        cvtColor(frame, processedFrame, COLOR_RGBA2GRAY);
-        Canny(processedFrame, processedFrame, threshold1, threshold2);
+        //cvtColor(frame, processedFrame, COLOR_RGBA2GRAY);
+        //Canny(processedFrame, processedFrame, threshold1, threshold2);
         
         // Возвращаем результат в исходный RGBA поток
-        cvtColor(processedFrame, frame, COLOR_GRAY2RGBA);
+        //cvtColor(processedFrame, frame, COLOR_GRAY2RGBA);
     }
 };
 
