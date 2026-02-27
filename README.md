@@ -16,3 +16,8 @@ The project focuses on production-style automation, reproducibility, and lightwe
 - Focus on engineering reliability rather than framework hype  
 - Transparent build and deployment automation  
 - Reproducible research-style development workflow 
+
+## 👥 The Core Team
+1. **Gemini (Google AI)**               - Thought Partner (Architecture & CI/CD).
+2. **ChatGPT (OpenAI)**                 - Master of Automation (ANSI logs & .bat scripts).
+3. **Sergey Heckel (@SolarWind1956)**   - Lead Engineer & Architect (C++, OpenCV).
