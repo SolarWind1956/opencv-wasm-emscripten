@@ -16,3 +16,14 @@ jobs:
 
       - name: Build with Python
         run: python3 scripts/build.py
+      - name: Download OpenCV Headers
+      
+      run: |
+        mkdir -p include/opencv2
+        curl -L https://raw.githubusercontent.com -o include/opencv2/core.hpp
+        curl -L https://raw.githubusercontent.com -o include/opencv2/imgproc.hpp
+        # Скачиваем дополнительные зависимости, чтобы компилятор не ругался
+        mkdir -p include/opencv2/imgproc
+        curl -L https://raw.githubusercontent.com -o include/opencv2/imgproc/imgproc.hpp
+
+        
