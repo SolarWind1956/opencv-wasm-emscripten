@@ -16,16 +16,16 @@ jobs:
         
       - name: Download OpenCV Headers
         run: |
-          # Клонируем ВЕСЬ репозиторий (только последний коммит)
-          git clone --depth 1 https://github.com opencv_src
+          # Клонируем ПОЛНЫЙ адрес (проверьте, чтобы было /opencv/opencv.git)
+          git clone --depth 1 https://github.com/opencv/opencv.git
           
-          # Создаем структуру и копируем ВСЕ заголовки
           mkdir -p include/opencv2
           cp -rv opencv_src/modules/core/include/opencv2/* include/opencv2/
           cp -rv opencv_src/modules/imgproc/include/opencv2/* include/opencv2/
           
-          echo "Проверка файлов:"
+          echo "Проверка: заголовки на месте!"
           ls include/opencv2/imgproc.hpp
+
 
 
 
