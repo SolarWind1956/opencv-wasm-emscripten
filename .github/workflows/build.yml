@@ -13,19 +13,18 @@ jobs:
 
       - name: Verify Emscripten
         run: emcc -v
+        
       - name: Download OpenCV Headers
         run: |
-          # 1. Скачиваем официальный архив заголовков OpenCV (версия 4.10.0)
-          curl -L https://github.com -o opencv.zip
+          # Клонируем только нужные папки с заголовками (самый надежный способ)
+          git clone --depth 1 --filter=blob:none --sparse https://github.com
+          cd opencv
+          git sparse-checkout set modules/core/include modules/imgproc/include
+          cd ..
           
-          # 2. Распаковываем его
-          unzip -q opencv.zip
-          
-          # 3. Создаем нашу папку include и переносим туда ВСЕ заголовки модулей
+          # Создаем структуру и копируем файлы
           mkdir -p include/opencv2
-          cp -r opencv-4.10.0/modules/core/include/opencv2/* include/opencv2/
-          cp -r opencv-4.10.0/modules/imgproc/include/opencv2/* include/opencv2/
-          
-          # 4. Очистка (чтобы не занимать место)
-          rm -rf opencv-4.10.0 opencv.zip
-          echo "OpenCV Headers downloaded and organized!"
+          cp -r opencv/modules/core/include/opencv2/* include/opencv2/
+          cp -r opencv/modules/imgproc/include/opencv2/* include/opencv2/
+          echo "OpenCV Headers are ready!"
+
