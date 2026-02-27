@@ -11,27 +11,9 @@ jobs:
       - name: Setup Emscripten
         uses: mymindstorm/setup-emsdk@v14
 
-      - name: Verify Emscripten
-        run: emcc -v
-        
-      - name: Download OpenCV WASM SDK
-        run: |
-          # Скачиваем официальный архив скомпилированного OpenCV.js SDK
-          curl -L https://github.com -o opencv_sdk.zip
-          unzip -q opencv_sdk.zip -d opencv_docs
-          
-          # Нам нужны только заголовки и библиотеки
-          mkdir -p include/opencv2
-          mkdir -p lib
-          
-          # Копируем всё необходимое (пути могут чуть отличаться в архиве, но это стандарт)
-          cp -r opencv_docs/opencv_js/opencv2/* include/opencv2/ || true
-          # Если в этом пакете нет .a файлов, мы используем упрощенную сборку
-          echo "SDK готов к работе"
-        
       - name: Build with Python
         run: python3 scripts/build.py
-          
+
       - name: Upload Build Artifacts
         uses: actions/upload-artifact@v4
         with:
