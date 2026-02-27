@@ -1,1 +1,22 @@
-
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>OpenCV-WASM EcoMonitor</title>
+    <style>
+        body { font-family: sans-serif; display: flex; flex-direction: column; align-items: center; background: #f0f2f5; }
+        #status { margin: 20px; padding: 10px; border-radius: 5px; background: #fff; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+    </style>
+</head>
+<body>
+    <h1>OpenCV-WASM EcoMonitor</h1>
+    <div id="status">Статус: Ожидание загрузки WebAssembly...</div>
+    
+    <!-- Сюда в будущем подключится магия OpenCV -->
+    <script async src="index.js"></script>
+    <script>
+      // Скрипт-заглушка для проверки
+      console.log("Интерфейс готов к работе.");
+    </script>
+</body>
+</html>
