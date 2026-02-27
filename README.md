@@ -20,4 +20,4 @@ The project focuses on production-style automation, reproducibility, and lightwe
 ## 👥 The Core Team
 1. **Gemini (Google AI)**               - Thought Partner (Architecture & CI/CD).
 2. **ChatGPT (OpenAI)**                 - Master of Automation (ANSI logs & .bat scripts).
-3. **Sergey Heckel (@SolarWind1956)**   - Lead Engineer & Architect (C++, OpenCV).
+3. **Sergej Heckel (@SolarWind1956)**   - Lead Engineer & Architect (C++, OpenCV).
