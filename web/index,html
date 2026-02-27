@@ -18,5 +18,32 @@
       // Скрипт-заглушка для проверки
       console.log("Интерфейс готов к работе.");
     </script>
+    <script>
+        var Module = {
+            onRuntimeInitialized: function() {
+                console.log("WASM Модуль загружен");
+                
+                // 1. Инициализируем наш C++ движок
+                const monitor = new Module.EcoMonitor();
+                console.log("Движок EcoMonitor готов!");
+    
+                // 2. Загружаем картинку
+                const img = new Image();
+                img.src = 'data/apple.jpg'; // Убедитесь, что путь верный
+                
+                img.onload = function() {
+                    console.log("Картинка загружена, запускаем обработку...");
+                    // Здесь мы вызовем функцию, которая передаст пиксели в monitor.processCanny
+                    runDemo(monitor, img); 
+                };
+            }
+        };
+    
+        function runDemo(monitor, img) {
+            // Здесь будет магия передачи данных из JS в C++
+            // (создание холста Canvas, получение ImageData и вызов monitor.processCanny)
+        }
+    </script>
+
 </body>
 </html>
