@@ -21,6 +21,7 @@ jobs:
       - name: Build OpenCV Libs
         if: steps.cache-opencv.outputs.cache-hit != 'true'
         run: |
+          # ИСПРАВЛЕНО: Полный путь к репозиторию
           git clone --depth 1 --branch 4.10.0 "https://github.com" opencv_source
           cd opencv_source
           mkdir build && cd build
@@ -32,6 +33,11 @@ jobs:
           cp -r ../include/* ../../opencv-wasm/include/
           find ../modules -name "include" -type d -exec cp -r {}/. ../../opencv-wasm/include/ \;
 
+      - name: Verify Files
+        run: |
+          echo "Проверка наличия библиотеки:"
+          ls -l opencv-wasm/lib/libopencv_world.a
+
       - name: Build My Project
         run: python3 scripts/build.py
 
@@ -42,4 +48,3 @@ jobs:
           path: |
             index.js
             index.wasm
-
