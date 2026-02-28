@@ -13,8 +13,6 @@ jobs:
         
       - name: Download OpenCV Headers
         run: |
-          # Скачиваем готовую библиотеку прямо в наш проект
-          wget -O opencv.js https://docs.opencv.org
           wget -O opencv.zip https://github.com/opencv/opencv/archive/refs/tags/4.10.0.zip
           unzip -q opencv.zip
           mkdir -p opencv-wasm/include/opencv2
@@ -28,6 +26,9 @@ jobs:
           
           # Проверка связи
           ls -R opencv-wasm/include/opencv2/opencv_modules.hpp
+
+          # Скачиваем готовую библиотеку прямо в наш проект 
+          wget -O opencv.js https://docs.opencv.org
           
       - name: Build My Project
         run: python3 scripts/build.py
