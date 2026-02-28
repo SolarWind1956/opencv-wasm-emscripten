@@ -21,27 +21,11 @@ jobs:
       - name: Build OpenCV Libs
         if: steps.cache-opencv.outputs.cache-hit != 'true'
         run: |
-          # 1. Клонируем в конкретную папку opencv_source
-          git clone --depth 1 --branch 4.10.0 https://github.com opencv_source
-          
+          git clone --depth 1 --branch 4.10.0 "https://github.com" opencv_source
           cd opencv_source
           mkdir build && cd build
-          
-          # 2. Конфигурация (минимизируем сборку для скорости)
-          emcmake cmake .. \
-            -DCMAKE_BUILD_TYPE=Release \
-            -DBUILD_LIST=core,imgproc \
-            -DBUILD_opencv_world=ON \
-            -DBUILD_TESTS=OFF \
-            -DBUILD_PERF_TESTS=OFF \
-            -DBUILD_EXAMPLES=OFF \
-            -DBUILD_opencv_apps=OFF \
-            -DWITH_PTHREADS_PF=OFF
-            
-          # 3. Сборка
-          emmake make -j$(nproc)
-          
-          # 4. Копирование артефактов в структуру проекта
+          emcmake cmake .. -DCMAKE_BUILD_TYPE=Release -DBUILD_LIST=core,imgproc -DBUILD_opencv_world=ON -DBUILD_TESTS=OFF -DBUILD_PERF_TESTS=OFF -DBUILD_EXAMPLES=OFF -DBUILD_opencv_apps=OFF
+          emmake make -j2
           mkdir -p ../../opencv-wasm/lib
           mkdir -p ../../opencv-wasm/include
           cp lib/libopencv_world.a ../../opencv-wasm/lib/
