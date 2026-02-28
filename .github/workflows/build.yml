@@ -33,7 +33,7 @@ jobs:
       - name: Download OpenCV Libs
         run: |
           # Скачиваем уже скомпилированные библиотеки (WASM)
-          wget -L https://github.com/opencv/opencv/releases/download/4.10.0/opencv-4.10.0-docs.zip -o opencv_lib.zip
+          wget -L https://github.com/opencv/opencv/releases/download/4.10.0/opencv-4.10.0-docs.zip -O opencv_lib.zip
           unzip -q opencv_lib.zip -d opencv_prebuilt
           mkdir -p opencv-wasm/lib
           # Берем только нужные файлы .a
