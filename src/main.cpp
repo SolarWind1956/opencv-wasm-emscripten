@@ -1,3 +1,4 @@
+#include <opencv2/core.hpp>
 #include <emscripten/bind.h>
 #include <string>
 
@@ -8,9 +9,11 @@ public:
     EcoMonitor() {}
 
     std::string processCanny() {
-        // Мы не вызываем cv::Mat напрямую здесь, чтобы линковщик не ругался,
-        // но подтверждаем, что класс EcoMonitor живой!
-        return "C++ EcoMonitor ready! OpenCV will be handled via JS bridge.";
+        // Создаем реальную матрицу OpenCV!
+        cv::Mat frame = cv::Mat::zeros(480, 640, CV_8UC1);
+        
+        std::string info = "OpenCV Mat: " + std::to_string(frame.cols) + "x" + std::to_string(frame.rows);
+        return "📢 C++ (WASM) сообщает: " + info + " (Matrix initialized!)";
     }
 };
 
@@ -19,3 +22,4 @@ EMSCRIPTEN_BINDINGS(eco_monitor_module) {
         .constructor<>()
         .function("processCanny", &EcoMonitor::processCanny);
 }
+
