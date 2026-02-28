@@ -13,7 +13,9 @@ def build():
         "-s", "ALLOW_MEMORY_GROWTH=1",
         "-s", "ERROR_ON_UNDEFINED_SYMBOLS=0", # МАГИЧЕСКАЯ СТРОКА 1
         "-s", "WARN_ON_UNDEFINED_SYMBOLS=0",  # МАГИЧЕСКАЯ СТРОКА 2
-        "-O3"
+        "-O3",
+        "-Lopencv-wasm/lib",
+        "-lopencv_core",
     ]
     
     print(f"Выполняю команду: {' '.join(command)}")
