@@ -10,15 +10,10 @@ jobs:
 
       - name: Setup Emscripten
         uses: mymindstorm/setup-emsdk@v14
-
-      - name: Install OpenCV Source
-        uses: actions/checkout@v4
-        with:
-          repository: opencv/opencv
-          ref: 4.10.0
-          path: opencv-wasm
-
-
+        
+      - name: Build OpenCV Library (Long Step)
+        run: bash scripts/build_opencv.sh
+        
       - name: Build with Python
         run: python3 scripts/build.py
 
