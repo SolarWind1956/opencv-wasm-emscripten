@@ -1,21 +1,23 @@
 import os, subprocess, sys
 
 def build():
-    print("🚀 Собираем ядро WASM (Финальный штурм)...")
+    print("🚀 Собираем ядро WASM (Финальный штурм #98)...")
     
+    # Пути к ресурсам, которые мы подготовили в GitHub Actions
     opencv_include = "opencv-wasm/include"
+    opencv_lib_dir = "opencv-wasm/lib"
     
     command = [
         "emcc", "src/main.cpp",
         "-o", "index.js",
         "--bind",
         f"-I{opencv_include}",
-        "-s", "ALLOW_MEMORY_GROWTH=1",
-        "-s", "ERROR_ON_UNDEFINED_SYMBOLS=0", # МАГИЧЕСКАЯ СТРОКА 1
-        "-s", "WARN_ON_UNDEFINED_SYMBOLS=0",  # МАГИЧЕСКАЯ СТРОКА 2
         "-O3",
-        "-Lopencv-wasm/lib",
-        "-lopencv_core",
+        f"-L{opencv_lib_dir}",
+        "-lopencv_world",  # ЗАМЕНА: используем общую библиотеку вместо core
+        "-s", "ALLOW_MEMORY_GROWTH=1",
+        "-s", "USE_PTHREADS=0",
+        "-s", "ERROR_ON_UNDEFINED_SYMBOLS=1", # Теперь включаем проверку, файл должен найтись!
     ]
     
     print(f"Выполняю команду: {' '.join(command)}")
@@ -23,6 +25,9 @@ def build():
     
     if result.returncode == 0:
         print("✅ УСПЕХ! Мы подружили C++ и OpenCV в облаке!")
+    else:
+        print("❌ Ошибка компоновки. Проверьте логи выше.")
+        
     sys.exit(result.returncode)
 
 if __name__ == "__main__":
