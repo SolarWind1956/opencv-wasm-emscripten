@@ -2,28 +2,25 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>OpenCV + WASM Project</title>
-    <!-- Убираем async, чтобы браузер загружал скрипт по порядку -->
-	<script src="opencv.js" type="text/javascript"></script>
+    <title>OpenCV + WASM Project: SolarWind1956</title>
 </head>
 <body>
-    <h1>Проект Сергея Геккеля: OpenCV + WASM</h1>
-    <p id="status">OpenCV загружается...</p>
+    <h1>Проект Сергея Геккеля: Мониторинг мидий (WASM)</h1>
+    <p id="status">Загрузка модуля C++...</p>
     <canvas id="canvasOutput"></canvas>
 
-	<script>
-		// Прямая проверка: если cv определено, значит библиотека подгрузилась
-		function checkOpenCV() {
-			if (typeof cv !== 'undefined') {
-				document.getElementById('status').innerHTML = '✅ OpenCV.js готов к работе!';
-				console.log('OpenCV version: ' + cv.version);
-			} else {
-				setTimeout(checkOpenCV, 500); // Проверяем каждые полсекунды
-			}
-		}
-		checkOpenCV();
-	</script>
+    <!-- Загружаем ВАШ скомпилированный скрипт, а не opencv.js -->
+    <script src="index.js"></script>
+
+    <script>
+        // Emscripten по умолчанию создает объект Module
+        var Module = {
+            onRuntimeInitialized: function() {
+                document.getElementById('status').innerHTML = '✅ Ваш C++ модуль с OpenCV готов!';
+                console.log('Модуль загружен успешно');
+            }
+        };
+    </script>
 </body>
 </html>
-
 
