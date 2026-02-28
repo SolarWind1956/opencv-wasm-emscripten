@@ -1,4 +1,4 @@
-name: Build OpenCV WASM
+name: Fast Build OpenCV WASM
 on: [push]
 
 jobs:
@@ -10,14 +10,23 @@ jobs:
 
       - name: Setup Emscripten
         uses: mymindstorm/setup-emsdk@v14
-        
-      - name: Build OpenCV Library (Long Step)
-        run: bash scripts/build_opencv.sh
-        
-      - name: Build with Python
+
+      - name: Download Prebuilt OpenCV WASM
+        run: |
+          # Скачиваем официальную сборку OpenCV.js
+          curl -L https://github.com -o opencv.zip
+          unzip -q opencv.zip -d opencv-data
+          mkdir -p opencv-wasm/include
+          mkdir -p opencv-wasm/lib
+          # Копируем заголовки и готовую библиотеку
+          cp -r opencv-data/opencv-4.10.0/include/* opencv-wasm/include/
+          # Нам нужен только opencv.js для начала
+          cp opencv-data/opencv-4.10.0/opencv_js.wasm opencv-wasm/lib/
+
+      - name: Build My Project
         run: python3 scripts/build.py
 
-      - name: Upload Build Artifacts
+      - name: Upload Artifacts
         uses: actions/upload-artifact@v4
         with:
           name: wasm-dist
