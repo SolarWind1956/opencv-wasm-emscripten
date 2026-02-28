@@ -11,33 +11,32 @@ jobs:
       - name: Setup Emscripten
         uses: mymindstorm/setup-emsdk@v14
         
-      - name: Download OpenCV Headers
-        run: |
-          wget -O opencv.zip https://github.com/opencv/opencv/archive/refs/tags/4.10.0.zip
-          unzip -q opencv.zip
-          mkdir -p opencv-wasm/include/opencv2
-          # Копируем всё содержимое
-          cp -r opencv-4.10.0/include/* opencv-wasm/include/
-          find opencv-4.10.0/modules -name "include" -type d -exec cp -r {}/. opencv-wasm/include/ \;
-          
-          # СОЗДАЕМ ЗАГЛУШКУ (тот самый файл, которого не хватает)
-          echo "#define HAVE_OPENCV_CORE" > opencv-wasm/include/opencv2/opencv_modules.hpp
-          echo "#define HAVE_OPENCV_IMGPROC" >> opencv-wasm/include/opencv2/opencv_modules.hpp
-          
-          # Проверка связи
-          ls -R opencv-wasm/include/opencv2/opencv_modules.hpp
+      - name: Cache OpenCV WASM
+        id: cache-opencv
+        uses: actions/cache@v4
+        with:
+          path: opencv-wasm
+          key: opencv-4.10.0-wasm-v1
 
-          # Скачиваем готовую библиотеку прямо в наш проект 
-          wget -O opencv.js --user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36" https://docs.opencv.org/4.10.0/opencv.js
-
-      - name: Download OpenCV Libs
+      - name: Build OpenCV Libs (if not cached)
+        if: steps.cache-opencv.outputs.cache-hit != 'true'
         run: |
-          # Скачиваем уже скомпилированные библиотеки (WASM)
-          wget -L https://github.com/opencv/opencv/releases/download/4.10.0/opencv-4.10.0-docs.zip -O opencv_lib.zip
-          unzip -q opencv_lib.zip -d opencv_prebuilt
-          mkdir -p opencv-wasm/lib
-          # Берем только нужные файлы .a
-          find opencv_prebuilt -name "*.a" -exec cp {} opencv-wasm/lib/ \;
+          git clone --depth 1 --branch 4.10.0 https://github.com
+          cd opencv
+          mkdir build && cd build
+          # Собираем только необходимые модули для скорости
+          emcmake cmake .. -DCMAKE_BUILD_TYPE=Release \
+                           -DBUILD_LIST=core,imgproc \
+                           -DBUILD_opencv_world=ON \
+                           -DBUILD_TESTS=OFF -DBUILD_PERF_TESTS=OFF -DVIDEOIO_ENABLE_PLUGINS=OFF
+          emmake make -j$(nproc)
+          
+          # Формируем структуру, которую ожидает ваш scripts/build.py
+          mkdir -p ../../opencv-wasm/lib
+          cp lib/libopencv_world.a ../../opencv-wasm/lib/
+          cp -r ../include ../../opencv-wasm/
+          # Копируем заголовки модулей
+          find modules -name "include" -type d -exec cp -r {}/. ../../opencv-wasm/include/ \;
 
       - name: Build My Project
         run: python3 scripts/build.py
