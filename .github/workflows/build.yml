@@ -11,11 +11,13 @@ jobs:
       - name: Setup Emscripten
         uses: mymindstorm/setup-emsdk@v14
 
-      - name: Install OpenCV WASM
-        run: |
-          # Создаем папку и скачиваем туда OpenCV
-          mkdir -p opencv-wasm
-          curl -L https://github.com | tar -xz -C opencv-wasm --strip-components=1
+      - name: Install OpenCV Source
+        uses: actions/checkout@v4
+        with:
+          repository: opencv/opencv
+          ref: 4.10.0
+          path: opencv-wasm
+
 
       - name: Build with Python
         run: python3 scripts/build.py
