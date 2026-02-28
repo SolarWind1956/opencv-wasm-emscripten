@@ -1,3 +1,4 @@
+#include <opencv2/core.hpp>
 #include <emscripten/bind.h>
 #include <iostream>
 
@@ -5,16 +6,16 @@ using namespace emscripten;
 
 class EcoMonitor {
 public:
-    EcoMonitor() {
-        std::cout << "EcoMonitor Engine Ready!" << std::endl;
-    }
+    EcoMonitor() {}
 
-    // Временно просто возвращаем то же самое, чтобы проверить связь
-    void processCanny(int inputAddr, int width, int height, double t1, double t2) {
-        // Мы вернемся сюда, когда подключим opencv.js отдельно
+    // Пока сделаем заглушку, чтобы проверить, что cv::Mat работает
+    std::string processCanny() {
+        cv::Mat test = cv::Mat::zeros(10, 10, CV_8UC1);
+        return "OpenCV Mat created! Version: " + std::string(CV_VERSION);
     }
 };
 
+// Ваш биндинг — это "мостик" для JavaScript
 EMSCRIPTEN_BINDINGS(eco_monitor_module) {
     class_<EcoMonitor>("EcoMonitor")
         .constructor<>()
