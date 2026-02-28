@@ -29,7 +29,16 @@ jobs:
 
           # Скачиваем готовую библиотеку прямо в наш проект 
           wget -O opencv.js --user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36" https://docs.opencv.org/4.10.0/opencv.js
-          
+
+      - name: Download OpenCV Libs
+        run: |
+          # Скачиваем уже скомпилированные библиотеки (WASM)
+          wget -L https://github.com/opencv/opencv/releases/download/4.10.0/opencv-4.10.0-docs.zip -o opencv_lib.zip
+          unzip -q opencv_lib.zip -d opencv_prebuilt
+          mkdir -p opencv-wasm/lib
+          # Берем только нужные файлы .a
+          find opencv_prebuilt -name "*.a" -exec cp {} opencv-wasm/lib/ \;
+
       - name: Build My Project
         run: python3 scripts/build.py
 
