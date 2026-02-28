@@ -16,11 +16,12 @@ jobs:
           wget -O opencv.zip https://github.com/opencv/opencv/archive/refs/tags/4.10.0.zip
           unzip -q opencv.zip
           mkdir -p opencv-wasm/include
-          # Ищем папку opencv2 внутри распакованного архива и копируем её
-          find . -name "opencv2" -type d -exec cp -r {} opencv-wasm/include/ \;
-          # Проверяем, что теперь файл на месте
-          find opencv-wasm/include -name "core.hpp"
-
+          # Копируем ВСЁ содержимое папок include из всех модулей
+          cp -r opencv-4.10.0/include/* opencv-wasm/include/
+          cp -r opencv-4.10.0/modules/*/include/* opencv-wasm/include/ || true
+          # Проверяем, что теперь основной файл на месте
+          ls opencv-wasm/include/opencv2/core.hpp
+          
       - name: Build My Project
         run: python3 scripts/build.py
 
