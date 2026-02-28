@@ -28,7 +28,7 @@ jobs:
           ls -R opencv-wasm/include/opencv2/opencv_modules.hpp
 
           # Скачиваем готовую библиотеку прямо в наш проект 
-          wget -O opencv.js https://docs.opencv.org
+          wget -O opencv.js https://docs.opencv.org/4.10.0/opencv.js
           
       - name: Build My Project
         run: python3 scripts/build.py
@@ -40,4 +40,6 @@ jobs:
           path: |
             index.js
             index.wasm
+            opencv.js
+
 
