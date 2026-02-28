@@ -17,16 +17,17 @@ jobs:
         with:
           path: opencv-wasm
           key: opencv-4.10.0-wasm-v1
-
-      - name: Build OpenCV Libs (Fixed URL)
+          
+      - name: Build OpenCV Libs
         if: steps.cache-opencv.outputs.cache-hit != 'true'
         run: |
-          # ВАЖНО: правильный полный путь к репозиторию
-          git clone --depth 1 --branch 4.10.0 https://github.com
-          cd opencv
+          # 1. Клонируем в конкретную папку opencv_source
+          git clone --depth 1 --branch 4.10.0 https://github.com opencv_source
+          
+          cd opencv_source
           mkdir build && cd build
           
-          # Настройка сборки минимального набора для WASM
+          # 2. Конфигурация (минимизируем сборку для скорости)
           emcmake cmake .. \
             -DCMAKE_BUILD_TYPE=Release \
             -DBUILD_LIST=core,imgproc \
@@ -37,15 +38,15 @@ jobs:
             -DBUILD_opencv_apps=OFF \
             -DWITH_PTHREADS_PF=OFF
             
+          # 3. Сборка
           emmake make -j$(nproc)
           
-          # Создаем структуру для вашего скрипта сборки
+          # 4. Копирование артефактов в структуру проекта
           mkdir -p ../../opencv-wasm/lib
           mkdir -p ../../opencv-wasm/include
           cp lib/libopencv_world.a ../../opencv-wasm/lib/
           cp -r ../include/* ../../opencv-wasm/include/
           find ../modules -name "include" -type d -exec cp -r {}/. ../../opencv-wasm/include/ \;
-
 
       - name: Build My Project
         run: python3 scripts/build.py
@@ -57,6 +58,4 @@ jobs:
           path: |
             index.js
             index.wasm
-            opencv.js
-
 
