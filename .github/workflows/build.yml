@@ -11,15 +11,18 @@ jobs:
       - name: Setup Emscripten
         uses: mymindstorm/setup-emsdk@v14
 
-      - name: Download OpenCV WASM (Final Attempt)
+      - name: Download OpenCV Headers
         run: |
-          # Используем официальное зеркало, которое точно отдает ZIP
+          # 1. Скачиваем архив
           wget -O opencv.zip https://github.com/opencv/opencv/archive/refs/tags/4.10.0.zip
+          # 2. Распаковываем
           unzip -q opencv.zip
-          mv opencv-4.10.0 opencv-wasm
-          # Создаем структуру, которую ждет ваш скрипт build.py
+          # 3. Создаем папку для компилятора
           mkdir -p opencv-wasm/include
-          # (Нам нужны только заголовочные файлы для компиляции C++)
+          # 4. Копируем ТОЛЬКО папку opencv2 (самое важное!)
+          cp -r opencv-4.10.0/include/opencv2 opencv-wasm/include/
+          # 5. Проверка для логов (если файл найдется, команда не выдаст ошибку)
+          ls opencv-wasm/include/opencv2/core.hpp
 
       - name: Build My Project
         run: python3 scripts/build.py
@@ -31,4 +34,4 @@ jobs:
           path: |
             index.js
             index.wasm
-            
+
