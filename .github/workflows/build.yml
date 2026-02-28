@@ -18,25 +18,34 @@ jobs:
           path: opencv-wasm
           key: opencv-4.10.0-wasm-v1
 
-      - name: Build OpenCV Libs (if not cached)
+      - name: Build OpenCV Libs (Fixed URL)
         if: steps.cache-opencv.outputs.cache-hit != 'true'
         run: |
+          # ВАЖНО: правильный полный путь к репозиторию
           git clone --depth 1 --branch 4.10.0 https://github.com
           cd opencv
           mkdir build && cd build
-          # Собираем только необходимые модули для скорости
-          emcmake cmake .. -DCMAKE_BUILD_TYPE=Release \
-                           -DBUILD_LIST=core,imgproc \
-                           -DBUILD_opencv_world=ON \
-                           -DBUILD_TESTS=OFF -DBUILD_PERF_TESTS=OFF -DVIDEOIO_ENABLE_PLUGINS=OFF
+          
+          # Настройка сборки минимального набора для WASM
+          emcmake cmake .. \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DBUILD_LIST=core,imgproc \
+            -DBUILD_opencv_world=ON \
+            -DBUILD_TESTS=OFF \
+            -DBUILD_PERF_TESTS=OFF \
+            -DBUILD_EXAMPLES=OFF \
+            -DBUILD_opencv_apps=OFF \
+            -DWITH_PTHREADS_PF=OFF
+            
           emmake make -j$(nproc)
           
-          # Формируем структуру, которую ожидает ваш scripts/build.py
+          # Создаем структуру для вашего скрипта сборки
           mkdir -p ../../opencv-wasm/lib
+          mkdir -p ../../opencv-wasm/include
           cp lib/libopencv_world.a ../../opencv-wasm/lib/
-          cp -r ../include ../../opencv-wasm/
-          # Копируем заголовки модулей
-          find modules -name "include" -type d -exec cp -r {}/. ../../opencv-wasm/include/ \;
+          cp -r ../include/* ../../opencv-wasm/include/
+          find ../modules -name "include" -type d -exec cp -r {}/. ../../opencv-wasm/include/ \;
+
 
       - name: Build My Project
         run: python3 scripts/build.py
