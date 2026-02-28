@@ -15,12 +15,17 @@ jobs:
         run: |
           wget -O opencv.zip https://github.com/opencv/opencv/archive/refs/tags/4.10.0.zip
           unzip -q opencv.zip
-          mkdir -p opencv-wasm/include
-          # Собираем все инклюды в одну кучу
+          mkdir -p opencv-wasm/include/opencv2
+          # Копируем всё содержимое
           cp -r opencv-4.10.0/include/* opencv-wasm/include/
           find opencv-4.10.0/modules -name "include" -type d -exec cp -r {}/. opencv-wasm/include/ \;
+          
+          # СОЗДАЕМ ЗАГЛУШКУ (тот самый файл, которого не хватает)
+          echo "#define HAVE_OPENCV_CORE" > opencv-wasm/include/opencv2/opencv_modules.hpp
+          echo "#define HAVE_OPENCV_IMGPROC" >> opencv-wasm/include/opencv2/opencv_modules.hpp
+          
           # Проверка связи
-          ls -R opencv-wasm/include/opencv2/core.hpp
+          ls -R opencv-wasm/include/opencv2/opencv_modules.hpp
           
       - name: Build My Project
         run: python3 scripts/build.py
