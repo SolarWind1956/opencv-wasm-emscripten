@@ -15,7 +15,7 @@ jobs:
         run: |
           # Создаем папку и скачиваем туда OpenCV
           mkdir -p opencv-wasm
-          curl -L https://raw.githubusercontent.com | tar -xz -C opencv-wasm --strip-components=1        
+          curl -L https://github.com | tar -xz -C opencv-wasm --strip-components=1
 
       - name: Build with Python
         run: python3 scripts/build.py
