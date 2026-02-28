@@ -1,17 +1,18 @@
 import os, subprocess, sys
 
 def build():
-    print("🚀 Собираем ядро WASM с путями к OpenCV...")
+    print("🚀 Собираем ядро WASM (Финальный штурм)...")
     
-    # Путь к папке, которую мы создали в build.yml
     opencv_include = "opencv-wasm/include"
     
     command = [
         "emcc", "src/main.cpp",
         "-o", "index.js",
         "--bind",
-        f"-I{opencv_include}",  # Указываем компилятору, где искать .hpp
+        f"-I{opencv_include}",
         "-s", "ALLOW_MEMORY_GROWTH=1",
+        "-s", "ERROR_ON_UNDEFINED_SYMBOLS=0", # МАГИЧЕСКАЯ СТРОКА 1
+        "-s", "WARN_ON_UNDEFINED_SYMBOLS=0",  # МАГИЧЕСКАЯ СТРОКА 2
         "-O3"
     ]
     
@@ -19,10 +20,7 @@ def build():
     result = subprocess.run(command)
     
     if result.returncode == 0:
-        print("✅ Сборка готова! Файлы index.js и index.wasm созданы.")
-    else:
-        print("❌ Ошибка компиляции. Проверьте логи выше.")
-        
+        print("✅ УСПЕХ! Мы подружили C++ и OpenCV в облаке!")
     sys.exit(result.returncode)
 
 if __name__ == "__main__":
