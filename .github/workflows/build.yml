@@ -13,16 +13,13 @@ jobs:
 
       - name: Download OpenCV Headers
         run: |
-          # 1. Скачиваем архив
           wget -O opencv.zip https://github.com/opencv/opencv/archive/refs/tags/4.10.0.zip
-          # 2. Распаковываем
           unzip -q opencv.zip
-          # 3. Создаем папку для компилятора
           mkdir -p opencv-wasm/include
-          # 4. Копируем ТОЛЬКО папку opencv2 (самое важное!)
-          cp -r opencv-4.10.0/include/opencv2 opencv-wasm/include/
-          # 5. Проверка для логов (если файл найдется, команда не выдаст ошибку)
-          ls opencv-wasm/include/opencv2/core.hpp
+          # Ищем папку opencv2 внутри распакованного архива и копируем её
+          find . -name "opencv2" -type d -exec cp -r {} opencv-wasm/include/ \;
+          # Проверяем, что теперь файл на месте
+          find opencv-wasm/include -name "core.hpp"
 
       - name: Build My Project
         run: python3 scripts/build.py
