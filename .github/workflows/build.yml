@@ -33,6 +33,7 @@ jobs:
           
           emcmake cmake .. \
             -DBUILD_EXAMPLES=OFF \
+            -DCPU_BASELINE=SCALAR \
             -DBUILD_JPEG=OFF \
             -DBUILD_LIST=core,imgproc \
             -DBUILD_OPENEXR=OFF \
@@ -47,14 +48,14 @@ jobs:
             -DBUILD_opencv_apps=OFF \
             -DBUILD_opencv_world=OFF \
             -DCMAKE_BUILD_TYPE=Release \
-            -DCMAKE_CXX_FLAGS="-msimd128" \
-            -DCMAKE_C_FLAGS="-msimd128" \
-            -DENABLE_SIMD=ON \
+            -DCMAKE_CXX_FLAGS="-DOPENCV_HAL_INTRIN_WASM_HPP=1" \
+            -DCMAKE_C_FLAGS="-DOPENCV_HAL_INTRIN_WASM_HPP=1" \
+            -DENABLE_SIMD=OFF \
             -DINSTALL_CREATE_DISTRIB=OFF \
             -DOPENCV_GENERATE_PKGCONFIG=OFF \
             -DOPENCV_GENERATE_SETUPVARS=OFF \
             -DOPENCV_SKIP_INSTALL_EXPORT=ON \
-            -DOPENCV_WASM_SIMD=ON \
+            -DOPENCV_WASM_SIMD=OFF \
             -DWITH_CUDA=OFF \
             -DWITH_GUI=OFF \
             -DWITH_IPP=OFF \
