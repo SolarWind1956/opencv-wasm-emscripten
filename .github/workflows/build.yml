@@ -47,7 +47,7 @@ jobs:
             -DBUILD_opencv_apps=OFF \
             -DBUILD_opencv_world=OFF \
             -DCMAKE_BUILD_TYPE=Release \
-            -DCMAKE_CXX_FLAGS=""
+            -DCMAKE_CXX_FLAGS="" \
             -DCMAKE_C_FLAGS="" \
             -DENABLE_SIMD=OFF \
             -DINSTALL_CREATE_DISTRIB=OFF \
