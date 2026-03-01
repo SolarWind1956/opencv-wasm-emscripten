@@ -41,6 +41,7 @@ include/opencv2/core.hpp
 scripts/build.py
 src/main.cpp
 README.md
+Resume_RUS.md
 index.html
 ##4. Критическая точка для сборки:
 Fast Build OpenCV WASM #100: Commit 7ec21ba pushed by SolarWind1956
