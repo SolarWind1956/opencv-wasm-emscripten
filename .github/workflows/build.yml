@@ -22,15 +22,12 @@ jobs:
         if: steps.cache-opencv.outputs.cache-hit != 'true'
         run: |
           rm -rf opencv_source
-          # Собираем URL из частей, чтобы обмануть парсер
-          PART1="github.com"
-          PART2="opencv/opencv.git"
-          FULL_URL="https://${PART1}/${PART2}"
-          
-          git clone --depth 1 --branch 4.9.0 "https://$HOST/$REPO" opencv_source
+          # Прямое клонирование проверенной версии 4.9.0
+          git clone --depth 1 --branch 4.9.0 https://github.com opencv_source
           
           cd opencv_source
           mkdir build && cd build
+          
           emcmake cmake .. \
             -DBUILD_EXAMPLES=OFF \
             -DBUILD_JPEG=OFF \
