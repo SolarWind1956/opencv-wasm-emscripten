@@ -27,7 +27,7 @@ jobs:
           PART2="opencv/opencv.git"
           FULL_URL="https://${PART1}/${PART2}"
           
-          git clone --depth 1 --branch 4.10.0 "$FULL_URL" opencv_source
+          git clone --depth 1 --branch 4.9.0 "https://$HOST/$REPO" opencv_source
           
           cd opencv_source
           mkdir build && cd build
@@ -47,14 +47,14 @@ jobs:
             -DBUILD_opencv_apps=OFF \
             -DBUILD_opencv_world=OFF \
             -DCMAKE_BUILD_TYPE=Release \
-            -DCMAKE_CXX_FLAGS="-msimd128" \
-            -DCMAKE_C_FLAGS="-msimd128" \
-            -DENABLE_SIMD=ON \
+            -DCMAKE_CXX_FLAGS="" \
+            -DCMAKE_C_FLAGS="" \
+            -DENABLE_SIMD=OFF \
             -DINSTALL_CREATE_DISTRIB=OFF \
             -DOPENCV_GENERATE_PKGCONFIG=OFF \
             -DOPENCV_GENERATE_SETUPVARS=OFF \
             -DOPENCV_SKIP_INSTALL_EXPORT=ON \
-            -DOPENCV_WASM_SIMD=ON \
+            -DOPENCV_WASM_SIMD=OFF \
             -DWITH_CUDA=OFF \
             -DWITH_GUI=OFF \
             -DWITH_IPP=OFF \
