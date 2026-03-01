@@ -20,7 +20,7 @@ def build():
         "-s", "ALLOW_MEMORY_GROWTH=1",
         "-s", "USE_PTHREADS=0",
         "-s", "ERROR_ON_UNDEFINED_SYMBOLS=1", # Теперь включаем проверку, файл должен найтись!
-        "-s", "EXPORTED_FUNCTIONS=['_malloc', '_free', '_main']",
+        "-s", "EXPORTED_FUNCTIONS=['_malloc', '_free']",
         "-s", "EXPORTED_RUNTIME_METHODS=['ccall', 'cwrap']",
     ]
     
