@@ -1,6 +1,7 @@
 #include <opencv2/core.hpp>
+#include <opencv2/imgproc.hpp>
 #include <emscripten/bind.h>
-#include <string>
+#include <emscripten/val.h>
 
 using namespace emscripten;
 
@@ -8,18 +9,28 @@ class EcoMonitor {
 public:
     EcoMonitor() {}
 
-    std::string processCanny() {
-        // Создаем реальную матрицу OpenCV!
-        cv::Mat frame = cv::Mat::zeros(480, 640, CV_8UC1);
+    // Функция принимает данные кадра, ширину и высоту
+    std::string processFrame(uintptr_t buffer, int width, int height) {
+        // 1. Создаем матрицу из сырых данных, пришедших из JS
+        cv::Mat frame(height, width, CV_8UC4, reinterpret_cast<unsigned char*>(buffer));
         
-        std::string info = "OpenCV Mat: " + std::to_string(frame.cols) + "x" + std::to_string(frame.rows);
-        return "📢 C++ (WASM) сообщает: " + info + " (Matrix initialized!)";
+        // 2. Переводим в оттенки серого (для детектора контуров)
+        cv::Mat gray, edges;
+        cv::cvtColor(frame, gray, cv::COLOR_RGBA2GRAY);
+        
+        // 3. ПРИМЕНЯЕМ ДЕТЕКТОР КЭННИ (Canny Edge Detector)
+        // Ищем границы мидий: пороги 50 и 150
+        cv::Canny(gray, edges, 50, 150);
+        
+        // 4. Считаем количество "белых" пикселей (активность границ)
+        int nonZero = cv::countNonZero(edges);
+        
+        return "📢 EcoMonitor: Обнаружено " + std::to_string(nonZero) + " точек контуров мидий.";
     }
 };
 
 EMSCRIPTEN_BINDINGS(eco_monitor_module) {
     class_<EcoMonitor>("EcoMonitor")
         .constructor<>()
-        .function("processCanny", &EcoMonitor::processCanny);
+        .function("processFrame", &EcoMonitor::processFrame);
 }
-
