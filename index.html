@@ -13,8 +13,9 @@
     <br><br>
     <!-- Кнопка запуска анализа -->
     <button onclick="runMusselAnalysis()" style="padding: 10px 20px; font-size: 16px; cursor: pointer;">
+		🔍 Анализировать мидий
     </button>
-
+	
 <!-- Место для вывода текстового результата -->
 <h2 id="resultOutput" style="color: darkblue;">Нажмите кнопку для начала...</h2>
 
@@ -22,13 +23,45 @@
     <script src="index.js"></script>
 
     <script>
-        // Emscripten по умолчанию создает объект Module
-        var Module = {
-            onRuntimeInitialized: function() {
-                document.getElementById('status').innerHTML = '✅ Ваш C++ модуль с OpenCV готов!';
-                console.log('Модуль загружен успешно');
-            }
-        };
+		// Используем переменную, которую Emscripten точно наполнит
+		var Module = {
+			onRuntimeInitialized: function() {
+				console.log("🚀 OpenCV WASM Модуль полностью готов к работе!");
+			}
+		};
+
+		function runMusselAnalysis() {
+			const img = document.getElementById('musselImage');
+			const canvas = document.createElement('canvas');
+			const ctx = canvas.getContext('2d');
+			canvas.width = 640; canvas.height = 480;
+			ctx.drawImage(img, 0, 0, 640, 480);
+
+			const pixels = ctx.getImageData(0, 0, 640, 480).data;
+			const ptr = Module._malloc(pixels.length);
+			Module.HEAPU8.set(pixels, ptr);
+
+			const mon = new Module.EcoMonitor();
+			
+			// --- ВОТ ОНА, МАГИЯ ---
+			const result = mon.processFrame(ptr, 640, 480); 
+			// Теперь в ptr лежат уже не мидии, а их контуры!
+			
+			// Забираем результат из памяти WASM и выводим на экран
+			const resultImageData = new ImageData(
+				new Uint8ClampedArray(Module.HEAPU8.buffer, ptr, pixels.length), 
+				640, 480
+			);
+			
+			// Рисуем контуры прямо поверх картинки (или на новый canvas)
+			ctx.putImageData(resultImageData, 0, 0);
+			document.body.appendChild(canvas); // Добавит черно-белый результат в конец страницы
+			// -----------------------
+
+			console.log(result);
+			Module._free(ptr);
+		}
+
     </script>
 </body>
 </html>
