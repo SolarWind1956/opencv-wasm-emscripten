@@ -22,8 +22,11 @@ jobs:
         if: steps.cache-opencv.outputs.cache-hit != 'true'
         run: |
           rm -rf opencv_source
-          # Прямое клонирование проверенной версии 4.9.0
-          git clone --depth 1 --branch 4.9.0 https://github.com opencv_source
+          # Разрезаем ссылку, чтобы GitHub её не "увидел" и не урезал
+          H="github.com"
+          R="opencv/opencv.git"
+          # Собираем её прямо в команде
+          git clone --depth 1 --branch 4.9.0 "https://$H/$R" opencv_source
           
           cd opencv_source
           mkdir build && cd build
