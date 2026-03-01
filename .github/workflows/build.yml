@@ -82,8 +82,8 @@ jobs:
 
       - name: Verify Files
         run: |
-          echo "Проверка наличия библиотеки:"
-          ls -l opencv-wasm/lib/libopencv_world.a
+          echo "Список добытых трофеев:"
+          ls -R opencv-wasm/lib/
 
       - name: Build My Project
         run: python3 scripts/build.py
