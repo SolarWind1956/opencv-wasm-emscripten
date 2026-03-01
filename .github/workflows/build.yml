@@ -33,6 +33,9 @@ jobs:
           mkdir build && cd build
           emcmake cmake .. \
             -DCMAKE_BUILD_TYPE=Release \
+            -DENABLE_SIMD=ON \
+            -Dcv_target_optim_set_WASM=ON \
+            -DOPENCV_WASM_SIMD=ON \
             -DBUILD_LIST=core,imgproc \
             -DBUILD_opencv_world=OFF \
             -DBUILD_ZLIB=ON \
