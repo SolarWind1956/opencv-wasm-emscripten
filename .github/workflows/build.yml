@@ -35,27 +35,30 @@ jobs:
             -DCMAKE_BUILD_TYPE=Release \
             -DBUILD_LIST=core,imgproc,imgcodecs \
             -DBUILD_opencv_world=ON \
+            -DOPENCV_SKIP_INSTALL_EXPORT=ON \
+            -DOPENCV_BIN_INSTALL_PATH=bin \
+            -DOPENCV_INCLUDE_INSTALL_PATH=include \
+            -DOPENCV_LIB_INSTALL_PATH=lib \
+            -DOPENCV_CONFIG_INSTALL_PATH=cmake \
+            -DINSTALL_CREATE_DISTRIB=OFF \
             -DBUILD_ZLIB=ON \
-            -DBUILD_PNG=ON \
+            -DBUILD_PNG=OFF \
             -DBUILD_JPEG=OFF \
+            -DBUILD_WEBP=OFF \
             -DBUILD_TIFF=OFF \
             -DBUILD_JASPER=OFF \
             -DBUILD_OPENEXR=OFF \
+            -DBUILD_OPENJPEG=OFF \
             -DWITH_ITT=OFF \
             -DWITH_IPP=OFF \
             -DWITH_QUIRC=OFF \
             -DWITH_CUDA=OFF \
             -DWITH_GUI=OFF \
             -DWITH_VIDEO=OFF \
-            -DWITH_VIDEOINPUT=OFF \
-            -DBUILD_opencv_highgui=OFF \
-            -DBUILD_opencv_videoio=OFF \
-            -DOPENCV_FORCE_PYTHON_LIBS=OFF \
             -DBUILD_TESTS=OFF \
             -DBUILD_PERF_TESTS=OFF \
             -DBUILD_EXAMPLES=OFF \
-            -DBUILD_opencv_apps=OFF \
-            -DINSTALL_CREATE_DISTRIB=OFF
+            -DBUILD_opencv_apps=OFF
 
            emmake make -j$(nproc)
           
