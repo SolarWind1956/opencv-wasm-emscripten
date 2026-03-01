@@ -8,6 +8,15 @@
     <h1>Проект Сергея Геккеля: Мониторинг мидий (WASM)</h1>
     <p id="status">Загрузка модуля C++...</p>
     <canvas id="canvasOutput"></canvas>
+    <!-- Размещаем фото мидий (замените mussels.jpg на ваше имя файла) -->
+    <img id="musselImage" src="data/mussel.jpg" width="640" height="480" style="border: 2px solid #333;">
+    <br><br>
+    <!-- Кнопка запуска анализа -->
+    <button onclick="runMusselAnalysis()" style="padding: 10px 20px; font-size: 16px; cursor: pointer;">
+    </button>
+
+<!-- Место для вывода текстового результата -->
+<h2 id="resultOutput" style="color: darkblue;">Нажмите кнопку для начала...</h2>
 
     <!-- Загружаем ВАШ скомпилированный скрипт, а не opencv.js -->
     <script src="index.js"></script>
