@@ -33,7 +33,6 @@ jobs:
           
           emcmake cmake .. \
             -DBUILD_EXAMPLES=OFF \
-            -DCPU_BASELINE=SCALAR \
             -DBUILD_JPEG=OFF \
             -DBUILD_LIST=core,imgproc \
             -DBUILD_OPENEXR=OFF \
@@ -48,8 +47,11 @@ jobs:
             -DBUILD_opencv_apps=OFF \
             -DBUILD_opencv_world=OFF \
             -DCMAKE_BUILD_TYPE=Release \
-            -DCMAKE_CXX_FLAGS="-DOPENCV_HAL_INTRIN_WASM_HPP=1" \
-            -DCMAKE_C_FLAGS="-DOPENCV_HAL_INTRIN_WASM_HPP=1" \
+            -DCMAKE_CXX_FLAGS="-DCV_CPU_COMPILE_WASM=0 -DCV_CPU_BASELINE_WASM=0 -DOPENCV_HAL_INTRIN_WASM_HPP=1" \
+            -DCMAKE_C_FLAGS="-DCV_CPU_COMPILE_WASM=0 -DCV_CPU_BASELINE_WASM=0 -DOPENCV_HAL_INTRIN_WASM_HPP=1" \
+            -DCPU_BASELINE=SCALAR \
+            -DCPU_DISPATCH="" \
+            -DCV_ENABLE_INTRINSICS=OFF \
             -DENABLE_SIMD=OFF \
             -DINSTALL_CREATE_DISTRIB=OFF \
             -DOPENCV_GENERATE_PKGCONFIG=OFF \
