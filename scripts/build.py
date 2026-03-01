@@ -9,7 +9,6 @@ def build():
     
     command = [
         "emcc", "src/main.cpp",
-        "-msimd128",
         "-o", "index.js",
         "--bind",
         f"-I{opencv_include}",
