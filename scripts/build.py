@@ -16,13 +16,16 @@ def build():
         f"-L{opencv_lib_dir}",
         "-lopencv_imgproc",
         "-lopencv_core", 
-        "-s", "USE_ZLIB=1",               # Магическая кнопка для Emscripten
+        "-s", "USE_ZLIB=1",
         "-s", "ALLOW_MEMORY_GROWTH=1",
         "-s", "USE_PTHREADS=0",
-        "-s", "ERROR_ON_UNDEFINED_SYMBOLS=1", # Теперь включаем проверку, файл должен найтись!
+        "-s", "ERROR_ON_UNDEFINED_SYMBOLS=1",
         "-s", "EXPORTED_FUNCTIONS=['_malloc', '_free']",
-        "-s", "EXPORTED_RUNTIME_METHODS=['ccall', 'cwrap']",
+        # ВОТ ЭТА СТРОКА ВКЛЮЧИТ HEAPU8 И ДРУГИЕ ИНСТРУМЕНТЫ:
+        "-s", "EXPORTED_RUNTIME_METHODS=['ccall', 'cwrap', 'HEAPU8']",
+        "-s", "MODULARIZE=0",
     ]
+
     
     print(f"Выполняю команду: {' '.join(command)}")
     result = subprocess.run(command)
