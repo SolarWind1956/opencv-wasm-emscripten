@@ -48,12 +48,14 @@ jobs:
             -DWITH_GUI=OFF \
             -DWITH_VIDEO=OFF \
             -DWITH_VIDEOINPUT=OFF \
+            -DBUILD_opencv_highgui=OFF \
+            -DBUILD_opencv_videoio=OFF \
             -DOPENCV_FORCE_PYTHON_LIBS=OFF \
             -DBUILD_TESTS=OFF \
             -DBUILD_PERF_TESTS=OFF \
             -DBUILD_EXAMPLES=OFF \
-            -DBUILD_opencv_apps=OFF
-
+            -DBUILD_opencv_apps=OFF \
+            -DINSTALL_CREATE_DISTRIB=OFF
 
            emmake make -j$(nproc)
           
