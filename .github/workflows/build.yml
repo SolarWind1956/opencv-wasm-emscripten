@@ -39,37 +39,32 @@ jobs:
             -DENABLE_SIMD=ON \
             -DOPENCV_WASM_SIMD=ON \
             -DBUILD_ZLIB=ON \
-            -DBUILD_JPEG=OFF \
-            -DBUILD_PNG=OFF \
-            -DBUILD_TIFF=OFF \
-            -DBUILD_JASPER=OFF \
-            -DBUILD_OPENEXR=OFF \
-            -DWITH_JPEG=OFF \
-            -DWITH_PNG=OFF \
-            -DWITH_TIFF=OFF \
-            -DWITH_WEBP=OFF \
             -DOPENCV_SKIP_INSTALL_EXPORT=ON \
+            -DOPENCV_GENERATE_PKGCONFIG=OFF \
+            -DOPENCV_GENERATE_SETUPVARS=OFF \
+            -DINSTALL_CREATE_DISTRIB=OFF \
+            -DBUILD_SHARED_LIBS=OFF \
             -DBUILD_TESTS=OFF \
             -DBUILD_PERF_TESTS=OFF \
             -DBUILD_EXAMPLES=OFF \
             -DBUILD_opencv_apps=OFF \
-            -DWITH_ITT=OFF \
-            -DWITH_IPP=OFF
+            -DWITH_JPEG=OFF -DBUILD_JPEG=OFF \
+            -DWITH_PNG=OFF -DBUILD_PNG=OFF \
+            -DWITH_TIFF=OFF -DBUILD_TIFF=OFF \
+            -DWITH_WEBP=OFF -DBUILD_WEBP=OFF \
+            -DWITH_OPENEXR=OFF -DBUILD_OPENEXR=OFF \
+            -DWITH_ITT=OFF -DWITH_IPP=OFF \
+            -DWITH_QUIRC=OFF -DWITH_CUDA=OFF \
+            -DWITH_GUI=OFF -DWITH_VIDEO=OFF
 
-          
           emmake make -j$(nproc)
-          
           cd ../..
           mkdir -p opencv-wasm/lib
           mkdir -p opencv-wasm/include
-          # Копируем обе библиотеки отдельно
-          cp opencv_source/build/lib/libopencv_core.a opencv-wasm/lib/
-          cp opencv_source/build/lib/libopencv_imgproc.a opencv-wasm/lib/
-          # Копируем заголовки
+          cp opencv_source/build/lib/*.a opencv-wasm/lib/
           cp -r opencv_source/include/* opencv-wasm/include/
           cp -r opencv_source/modules/core/include/* opencv-wasm/include/
           cp -r opencv_source/modules/imgproc/include/* opencv-wasm/include/
-
 
       - name: Verify Files
         run: |
