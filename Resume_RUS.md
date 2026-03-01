@@ -22,11 +22,11 @@ Trigger: push
 Цель: Сборка легкой версии OpenCV (модули core, imgproc) в библиотеку libopencv_world.a 
 и последующая компиляция основного проекта в index.wasm.
 ##2.1. Инварианты проекта
-1. Используем только OpenCV 4.10.0
-2. Сборка только core + imgproc
-3. Целевая среда - WebAssembly
-4. Без Node.js runtime
-5. Библиотеки статические
+- Используем только OpenCV 4.10.0
+- Сборка только core + imgproc
+- Целевая среда - WebAssembly
+- Без Node.js runtime
+- Библиотеки статические
 ##3. Участники проекта:
 1. Gemini (Google AI) 				- Thought Partner
 2. ChatGPT (OpenAI)					- Thought Partner
