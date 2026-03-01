@@ -35,24 +35,24 @@ jobs:
             -DCMAKE_BUILD_TYPE=Release \
             -DBUILD_LIST=core,imgproc \
             -DBUILD_opencv_world=ON \
+            -DBUILD_ZLIB=ON \
+            -DOPENCV_GENERATE_PKGCONFIG=OFF \
+            -DOPENCV_GENERATE_SETUPVARS=OFF \
+            -DINSTALL_CREATE_DISTRIB=OFF \
             -DBUILD_TESTS=OFF \
             -DBUILD_PERF_TESTS=OFF \
             -DBUILD_EXAMPLES=OFF \
             -DBUILD_opencv_apps=OFF \
-            -DOPENCV_FORCE_PYTHON_LIBS=OFF \
+            -DWITH_ITT=OFF \
+            -DWITH_IPP=OFF \
             -DWITH_PTHREADS_PF=OFF \
             -DWITH_QUIRC=OFF \
             -DWITH_CUDA=OFF \
             -DWITH_GUI=OFF \
-            -DWITH_GTK=OFF \
-            -DWITH_QT=OFF \
             -DWITH_VIDEO=OFF \
-            -DWITH_VIDEOINPUT=OFF \
-            -DBUILD_opencv_highgui=OFF \
-            -DBUILD_opencv_videoio=OFF \
-            -DBUILD_opencv_imgcodecs=OFF
-          
-          emmake make -j$(nproc)
+            -DWITH_VIDEOINPUT=OFF
+
+           emmake make -j$(nproc)
           
           cd ../..
           mkdir -p opencv-wasm/lib
