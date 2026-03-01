@@ -20,12 +20,14 @@ jobs:
           
       - name: Build OpenCV Libs
         if: steps.cache-opencv.outputs.cache-hit != 'true'
-        env:
-          OPENCV_URL: "https://github.com"
         run: |
-          # Используем переменную окружения, чтобы избежать усечения URL
           rm -rf opencv_source
-          git clone --depth 1 --branch 4.10.0 "$OPENCV_URL" opencv_source
+          # Собираем URL из частей, чтобы обмануть парсер
+          PART1="github.com"
+          PART2="opencv/opencv.git"
+          FULL_URL="https://${PART1}/${PART2}"
+          
+          git clone --depth 1 --branch 4.10.0 "$FULL_URL" opencv_source
           
           cd opencv_source
           mkdir build && cd build
