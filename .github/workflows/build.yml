@@ -33,24 +33,27 @@ jobs:
           mkdir build && cd build
           emcmake cmake .. \
             -DCMAKE_BUILD_TYPE=Release \
-            -DBUILD_LIST=core,imgproc \
+            -DBUILD_LIST=core,imgproc,imgcodecs \
             -DBUILD_opencv_world=ON \
             -DBUILD_ZLIB=ON \
-            -DOPENCV_GENERATE_PKGCONFIG=OFF \
-            -DOPENCV_GENERATE_SETUPVARS=OFF \
-            -DINSTALL_CREATE_DISTRIB=OFF \
-            -DBUILD_TESTS=OFF \
-            -DBUILD_PERF_TESTS=OFF \
-            -DBUILD_EXAMPLES=OFF \
-            -DBUILD_opencv_apps=OFF \
+            -DBUILD_PNG=ON \
+            -DBUILD_JPEG=OFF \
+            -DBUILD_TIFF=OFF \
+            -DBUILD_JASPER=OFF \
+            -DBUILD_OPENEXR=OFF \
             -DWITH_ITT=OFF \
             -DWITH_IPP=OFF \
-            -DWITH_PTHREADS_PF=OFF \
             -DWITH_QUIRC=OFF \
             -DWITH_CUDA=OFF \
             -DWITH_GUI=OFF \
             -DWITH_VIDEO=OFF \
-            -DWITH_VIDEOINPUT=OFF
+            -DWITH_VIDEOINPUT=OFF \
+            -DOPENCV_FORCE_PYTHON_LIBS=OFF \
+            -DBUILD_TESTS=OFF \
+            -DBUILD_PERF_TESTS=OFF \
+            -DBUILD_EXAMPLES=OFF \
+            -DBUILD_opencv_apps=OFF
+
 
            emmake make -j$(nproc)
           
