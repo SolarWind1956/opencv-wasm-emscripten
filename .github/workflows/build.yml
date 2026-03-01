@@ -92,6 +92,7 @@ jobs:
         run: |
           echo "Список добытых трофеев:"
           ls -R opencv-wasm/lib/
+          ls -l opencv-wasm/lib/
 
       - name: Build My Project
         run: python3 scripts/build.py
