@@ -16,6 +16,7 @@ def build():
         f"-L{opencv_lib_dir}",
         "-lopencv_imgproc",
         "-lopencv_core", 
+        "-lz", 
         "-s", "ALLOW_MEMORY_GROWTH=1",
         "-s", "USE_PTHREADS=0",
         "-s", "ERROR_ON_UNDEFINED_SYMBOLS=1", # Теперь включаем проверку, файл должен найтись!
