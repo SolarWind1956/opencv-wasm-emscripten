@@ -32,30 +32,41 @@ jobs:
           cd opencv_source
           mkdir build && cd build
           emcmake cmake .. \
-          emcmake cmake .. \
-            -DCMAKE_BUILD_TYPE=Release \
+            -DBUILD_EXAMPLES=OFF \
+            -DBUILD_JPEG=OFF \
             -DBUILD_LIST=core,imgproc \
-            -DBUILD_opencv_world=OFF \
-            -DENABLE_SIMD=ON \
-            -DOPENCV_WASM_SIMD=ON \
-            -DBUILD_ZLIB=ON \
-            -DOPENCV_SKIP_INSTALL_EXPORT=ON \
-            -DOPENCV_GENERATE_PKGCONFIG=OFF \
-            -DOPENCV_GENERATE_SETUPVARS=OFF \
-            -DINSTALL_CREATE_DISTRIB=OFF \
+            -DBUILD_OPENEXR=OFF \
+            -DBUILD_OPENJPEG=OFF \
+            -DBUILD_PERF_TESTS=OFF \
+            -DBUILD_PNG=OFF \
             -DBUILD_SHARED_LIBS=OFF \
             -DBUILD_TESTS=OFF \
-            -DBUILD_PERF_TESTS=OFF \
-            -DBUILD_EXAMPLES=OFF \
+            -DBUILD_TIFF=OFF \
+            -DBUILD_WEBP=OFF \
+            -DBUILD_ZLIB=ON \
             -DBUILD_opencv_apps=OFF \
-            -DWITH_JPEG=OFF -DBUILD_JPEG=OFF \
-            -DWITH_PNG=OFF -DBUILD_PNG=OFF \
-            -DWITH_TIFF=OFF -DBUILD_TIFF=OFF \
-            -DWITH_WEBP=OFF -DBUILD_WEBP=OFF \
-            -DWITH_OPENEXR=OFF -DBUILD_OPENEXR=OFF \
-            -DWITH_ITT=OFF -DWITH_IPP=OFF \
-            -DWITH_QUIRC=OFF -DWITH_CUDA=OFF \
-            -DWITH_GUI=OFF -DWITH_VIDEO=OFF
+            -DBUILD_opencv_world=OFF \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DCMAKE_CXX_FLAGS="-msimd128" \
+            -DCMAKE_C_FLAGS="-msimd128" \
+            -DENABLE_SIMD=ON \
+            -DINSTALL_CREATE_DISTRIB=OFF \
+            -DOPENCV_GENERATE_PKGCONFIG=OFF \
+            -DOPENCV_GENERATE_SETUPVARS=OFF \
+            -DOPENCV_SKIP_INSTALL_EXPORT=ON \
+            -DOPENCV_WASM_SIMD=ON \
+            -DWITH_CUDA=OFF \
+            -DWITH_GUI=OFF \
+            -DWITH_IPP=OFF \
+            -DWITH_ITT=OFF \
+            -DWITH_JPEG=OFF \
+            -DWITH_OPENEXR=OFF \
+            -DWITH_OPENJPEG=OFF \
+            -DWITH_PNG=OFF \
+            -DWITH_QUIRC=OFF \
+            -DWITH_TIFF=OFF \
+            -DWITH_VIDEO=OFF \
+            -DWITH_WEBP=OFF
 
           emmake make -j$(nproc)
           cd ../..
