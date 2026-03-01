@@ -20,19 +20,31 @@ jobs:
           
       - name: Build OpenCV Libs
         if: steps.cache-opencv.outputs.cache-hit != 'true'
+        env:
+          OPENCV_URL: "https://github.com"
         run: |
-          # ИСПРАВЛЕНО: Указан правильный путь к репозиторию OpenCV
-          git clone --depth 1 --branch 4.10.0 https://github.com opencv_source
+          # Используем переменную окружения, чтобы избежать усечения URL
+          rm -rf opencv_source
+          git clone --depth 1 --branch 4.10.0 "$OPENCV_URL" opencv_source
+          
           cd opencv_source
           mkdir build && cd build
-          emcmake cmake .. -DCMAKE_BUILD_TYPE=Release -DBUILD_LIST=core,imgproc -DBUILD_opencv_world=ON -DBUILD_TESTS=OFF -DBUILD_PERF_TESTS=OFF -DBUILD_EXAMPLES=OFF -DBUILD_opencv_apps=OFF -DOPENCV_FORCE_PYTHON_LIBS=OFF
+          emcmake cmake .. \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DBUILD_LIST=core,imgproc \
+            -DBUILD_opencv_world=ON \
+            -DBUILD_TESTS=OFF \
+            -DBUILD_PERF_TESTS=OFF \
+            -DBUILD_EXAMPLES=OFF \
+            -DBUILD_opencv_apps=OFF
+          
           emmake make -j$(nproc)
+          
           cd ../..
           mkdir -p opencv-wasm/lib
           mkdir -p opencv-wasm/include
           cp opencv_source/build/lib/libopencv_world.a opencv-wasm/lib/
           cp -r opencv_source/include/* opencv-wasm/include/
-          # Копируем заголовки модулей
           cp -r opencv_source/modules/core/include/* opencv-wasm/include/
           cp -r opencv_source/modules/imgproc/include/* opencv-wasm/include/
 
