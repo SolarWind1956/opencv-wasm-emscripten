@@ -73,12 +73,20 @@ jobs:
 
           emmake make -j$(nproc)
           cd ../..
+          # Создаем структуру, куда будем складывать "трофеи"
           mkdir -p opencv-wasm/lib
-          mkdir -p opencv-wasm/include
+          mkdir -p opencv-wasm/include/opencv2
+          
+          # 1. Копируем библиотеки (файлы .a)
           cp opencv_source/build/lib/*.a opencv-wasm/lib/
+          
+          # 2. Копируем папки с заголовками (тут -r ОБЯЗАТЕЛЕН)
           cp -r opencv_source/include/* opencv-wasm/include/
           cp -r opencv_source/modules/core/include/* opencv-wasm/include/
           cp -r opencv_source/modules/imgproc/include/* opencv-wasm/include/
+          
+          # 3. Копируем то самое "Оглавление" (одиночный файл, без -r)
+          cp opencv_source/build/opencv2/opencv_modules.hpp opencv-wasm/include/opencv2/
 
       - name: Verify Files
         run: |
