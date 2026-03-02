@@ -5,9 +5,9 @@
     <title>OpenCV + WASM Project: SolarWind1956</title>
 </head>
 <body>
-    <h1>Проект Сергея Геккеля: Мониторинг мидий (WASM)</h1>
+    <h1>Проект: Мониторинг мидий (WASM)</h1>
     <p id="status">Загрузка модуля C++...</p>
-    <canvas id="canvasOutput"></canvas>
+
     <!-- Размещаем фото мидий (замените mussels.jpg на ваше имя файла) -->
     <img id="musselImage" src="data/mussel.jpg" width="640" height="480" style="border: 2px solid #333;">
     <br><br>
@@ -19,6 +19,8 @@
 <!-- Место для вывода текстового результата -->
 <h2 id="resultOutput" style="color: darkblue;">Нажмите кнопку для начала...</h2>
 
+<canvas id="canvasOutput"></canvas>
+
     <!-- Загружаем ВАШ скомпилированный скрипт, а не opencv.js -->
     <script src="index.js"></script>
 
@@ -29,40 +31,69 @@
 				console.log("🚀 OpenCV WASM Модуль полностью готов к работе!");
 			}
 		};
-
 		function runMusselAnalysis() {
 			const img = document.getElementById('musselImage');
-			const canvas = document.createElement('canvas');
-			const ctx = canvas.getContext('2d');
-			canvas.width = 640; canvas.height = 480;
-			ctx.drawImage(img, 0, 0, 640, 480);
+			const finalCanvas = document.getElementById('canvasOutput');
+			
+			if (!finalCanvas) {
+				return console.error("❌ Ошибка: В HTML не найден <canvas id='canvasOutput'>");
+			}
+			
+			const fCtx = finalCanvas.getContext('2d');
 
-			const pixels = ctx.getImageData(0, 0, 640, 480).data;
+			// 1. Подготовка
+			const tempCanvas = document.createElement('canvas');
+			tempCanvas.width = 640; tempCanvas.height = 480;
+			const tCtx = tempCanvas.getContext('2d');
+			tCtx.drawImage(img, 0, 0, 640, 480);
+			const pixels = tCtx.getImageData(0, 0, 640, 480).data;
+
 			const ptr = Module._malloc(pixels.length);
 			Module.HEAPU8.set(pixels, ptr);
 
 			const mon = new Module.EcoMonitor();
+			const resultCount = mon.processFrame(ptr, 640, 480); 
 			
-			// --- ВОТ ОНА, МАГИЯ ---
-			const result = mon.processFrame(ptr, 640, 480); 
-			// Теперь в ptr лежат уже не мидии, а их контуры!
-			
-			// Забираем результат из памяти WASM и выводим на экран
-			const resultImageData = new ImageData(
-				new Uint8ClampedArray(Module.HEAPU8.buffer, ptr, pixels.length), 
-				640, 480
-			);
-			
-			// Рисуем контуры прямо поверх картинки (или на новый canvas)
-			ctx.putImageData(resultImageData, 0, 0);
-			document.body.appendChild(canvas); // Добавит черно-белый результат в конец страницы
-			// -----------------------
+		  
+				// 2. УЛУЧШЕННАЯ СБОРКА (делаем фон черным, а контуры белыми)
+				// 2. ВОЗВРАТ К ЧЕТКОСТИ (RGBA чтение)
+			const rgbaOutput = new Uint8ClampedArray(640 * 480 * 4);
+			for (let i = 0; i < 640 * 480 * 4; i += 4) {
+				// Берем байты как они лежат в памяти: R, G, B, A
+				let r = Module.HEAPU8[ptr + i];
+				let g = Module.HEAPU8[ptr + i + 1];
+				let b = Module.HEAPU8[ptr + i + 2];
+				
+				// Если хоть в одном канале есть яркий сигнал — это наш контур
+				let brightness = (r > 100 || g > 100 || b > 100) ? 255 : 0;
 
-			console.log(result);
+				rgbaOutput[i]     = brightness; // R
+				rgbaOutput[i + 1] = brightness; // G
+				rgbaOutput[i + 2] = brightness; // B
+				rgbaOutput[i + 3] = 255;        // Alpha
+			}
+
+			// 3. ОТРИСОВКА КОЛЛАЖА
+			finalCanvas.width = 1280;
+			finalCanvas.height = 480;
+			
+			// Рисуем оригинал слева
+			fCtx.drawImage(img, 0, 0, 640, 480);
+
+			// Рисуем контуры справа
+			const resImgData = new ImageData(rgbaOutput, 640, 480);
+			tCtx.putImageData(resImgData, 0, 0); 
+			fCtx.drawImage(tempCanvas, 640, 0); 
+
+			// 4. СКАЧИВАНИЕ
+			const link = document.createElement('a');
+			link.download = 'mussels_success.png';
+			link.href = finalCanvas.toDataURL('image/png');
+			link.click();
+
+			document.getElementById('resultOutput').innerText = resultCount;
 			Module._free(ptr);
 		}
-
     </script>
 </body>
 </html>
-
