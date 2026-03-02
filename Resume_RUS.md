@@ -40,15 +40,25 @@ Trigger: push
 
 ##3. Текущая структура репозитория:
 opencv-wasm-emscripten/
+
 .github/workflows/build.yml
+
 docs/architecture.md
+
 docs/ci_pipeline.md
+
 docs/wasm_notes.md
+
 include/opencv2/core.hpp
+
 scripts/build.py
+
 src/main.cpp
+
 README.md
+
 Resume_RUS.md
+
 index.html
 
 ##4. Критическая точка для сборки:
