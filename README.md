@@ -1,4 +1,4 @@
-**Cast thy bread upon the waters: for thou shalt find it after many days**.
+**Cast thy bread upon the waters: for thou shalt find it after many days**. ^
 **Ecclesiastes 11:1**
 ## 🌊 OpenCV-WASM EcoMonitor
 High-performance computer vision in the browser using OpenCV, WebAssembly, and Emscripten.
