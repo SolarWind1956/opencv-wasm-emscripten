@@ -18,7 +18,7 @@ The project focuses on production-style automation, reproducibility, and lightwe
 ## 👤 Architecture Philosophy
 - Focus on engineering reliability rather than framework hype  
 - Transparent build and deployment automation  
-- Reproducible research-style development workflow 
+- Reproducible research-style development workflow  
 
 ## 👥 The Core Team
 1. **Gemini        (Google AI)**        - Thought Partner
