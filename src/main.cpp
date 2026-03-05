@@ -22,7 +22,7 @@ private:
 public:
     std::string process(cv::Mat& frame) override {
 		// В начале метода process добавьте:
-		cv::line(frame, cv::Point(0,0), cv::Point(width, height), cv::Scalar(255, 0, 0, 255), 10);
+		cv::line(frame, cv::Point(0,0), cv::Point(300, 300), cv::Scalar(255, 0, 0, 255), 10);
 
         cv::Mat gray, blurred, edges, kernel;
         
