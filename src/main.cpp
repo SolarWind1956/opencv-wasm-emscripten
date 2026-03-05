@@ -21,9 +21,7 @@ private:
 	int highThreshold 	= 150;
 public:
     std::string process(cv::Mat& frame) override {
-		// В начале метода process добавьте:
-		cv::line(frame, cv::Point(0,0), cv::Point(300, 300), cv::Scalar(0, 0, 0, 140), 20);
-		cv::rectangle(frame, cv::Rect(10, 10, 300, 300), cv::Scalar(0, 0, 0, 140), 20);
+
         cv::Mat gray, blurred, edges, kernel;
         
         // 1. Подготовка (из RGBA в Серый)
@@ -48,8 +46,11 @@ public:
         // 6. Отрисовка: Сначала делаем фон цветным, чтобы видеть зеленые линии
         // (Опционально: можно оставить frame как есть, если хотим рисовать по оригиналу)
         // cv::cvtColor(gray, frame, cv::COLOR_GRAY2RGBA); 
-
-        int count = 0;
+	
+		cv::line(frame, cv::Point(0,0), cv::Point(300, 300), cv::Scalar(0, 255, 0, 140), 20);
+		cv::rectangle(frame, cv::Rect(10, 10, 300, 300), cv::Scalar(0, 0, 255, 140), 20);
+    
+		int count = 0;
         for (size_t i = 0; i < contours.size(); i++) {
             double area = cv::contourArea(contours[i]);
 			// 	Ищем только крупные объекты (раковины)
