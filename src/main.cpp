@@ -30,6 +30,7 @@ public:
         //	cv::GaussianBlur(gray, blurred, cv::Size(9, 9), 0);
 		// 2. Убираем шум (Медианный фильтр вместо Гауссова)
 		cv::medianBlur(gray, blurred, 11); // Число должно быть нечетным
+		 
         // 3. Детектор границ
         cv::Canny(blurred, edges, lowThreshold, highThreshold);
 
@@ -48,9 +49,10 @@ public:
         int count = 0;
         for (size_t i = 0; i < contours.size(); i++) {
             double area = cv::contourArea(contours[i]);
+			// 	Ищем только крупные объекты (раковины)
             if (area > 500) { 
-                // Рисуем зеленый контур (RGBA: 0, 255, 0, 255) толщиной 2 пикселя
-                cv::drawContours(frame, contours, (int)i, cv::Scalar(0, 255, 0, 255), 2);
+                // Рисуем зеленый контур (RGBA: 0, 255, 0, 255) толщиной 3 пикселя
+                cv::drawContours(frame, contours, (int)i, cv::Scalar(0, 255, 0, 255), 3);
                 count++;
             }
         }
