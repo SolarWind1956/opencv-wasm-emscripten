@@ -35,9 +35,14 @@ public:
         // 3. Детектор границ
         cv::Canny(blurred, edges, lowThreshold, highThreshold);
 
-        // 4. Морфология (закрываем дыры в контурах)
-        kernel = cv::getStructuringElement(cv::MORPH_RECT, cv::Size(3, 3));
-        cv::morphologyEx(edges, edges, cv::MORPH_CLOSE, kernel);
+		// 1. Увеличиваем ядро, чтобы "склеить" разрозненные линии в объекты
+		cv::Mat kernel = cv::getStructuringElement(cv::MORPH_ELLIPSE, cv::Size(11, 11));
+
+		// 2. Операция "Закрытие" (уберет дырки внутри мидий и соединит линии)
+		cv::morphologyEx(edges, edges, cv::MORPH_CLOSE, kernel);
+
+		// 3. Операция "Открытие" (уберет мелкий песок и шум в левом нижнем углу)
+		cv::morphologyEx(edges, edges, cv::MORPH_OPEN, kernel);
 
         // 5. Поиск объектов
         std::vector<std::vector<cv::Point>> contours;
