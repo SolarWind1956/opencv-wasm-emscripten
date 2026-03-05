@@ -36,7 +36,7 @@ public:
         cv::Canny(blurred, edges, lowThreshold, highThreshold);
 
 		// 1. Увеличиваем ядро, чтобы "склеить" разрозненные линии в объекты
-		cv::Mat kernel = cv::getStructuringElement(cv::MORPH_ELLIPSE, cv::Size(11, 11));
+		kernel = cv::getStructuringElement(cv::MORPH_ELLIPSE, cv::Size(11, 11));
 
 		// 2. Операция "Закрытие" (уберет дырки внутри мидий и соединит линии)
 		cv::morphologyEx(edges, edges, cv::MORPH_CLOSE, kernel);
