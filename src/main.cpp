@@ -22,8 +22,8 @@ private:
 public:
     std::string process(cv::Mat& frame) override {
 		// В начале метода process добавьте:
-		cv::line(frame, cv::Point(0,0), cv::Point(300, 300), cv::Scalar(255, 255, 255, 255), 20);
-		cv::rectangle(frame, cv::Rect(10, 10, 300, 300), cv::Scalar(255, 255, 255, 255), 20);
+		cv::line(frame, cv::Point(0,0), cv::Point(300, 300), cv::Scalar(0, 0, 0, 255), 20);
+		cv::rectangle(frame, cv::Rect(10, 10, 300, 300), cv::Scalar(0, 0, 0, 255), 20);
         cv::Mat gray, blurred, edges, kernel;
         
         // 1. Подготовка (из RGBA в Серый)
