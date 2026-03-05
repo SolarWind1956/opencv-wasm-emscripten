@@ -1,4 +1,4 @@
-#include <opencv2/core.hpp>
+/#include <opencv2/core.hpp>
 #include <opencv2/imgproc.hpp>
 #include <emscripten/bind.h>
 #include <string>
@@ -37,16 +37,17 @@ public:
 
 		// 1. Ищем линии (отрезки)
 		std::vector<cv::Vec4i> lines;
-		// Очень низкие пороги: 
-		// 20 - порог пересечений, 10 - мин. длина, 20 - макс. разрыв между точками
-		cv::HoughLinesP(edges, lines, 1, CV_PI/180, 20, 10, 20);
+		// 1. Порог (20) — сколько точек должны лечь в ряд
+		// 2. Мин. длина (10) — даже очень короткие отрезки
+		// 3. Макс. разрыв (30) — разрешаем соединять точки с большими дырами
+		cv::HoughLinesP(edges, lines, 1, CV_PI/180, 20, 10, 30);
 
 		for (size_t i = 0; i < lines.size(); i++) {
     		cv::Vec4i l = lines[i];
-    		// Рисуем ЯРКО-ЗЕЛЕНЫМ (0, 255, 0) и толщиной 5, чтобы точно заметить
+    		// Рисуем ЯРКО-ЗЕЛЕНЫМ (0, 255, 0) и толщиной 10, чтобы точно заметить
     		cv::line	(	frame
 						,	cv::Point(l[0], l[1]), cv::Point(l[2], l[3])
-						, 	cv::Scalar(0, 255, 0, 255), 5
+						, 	cv::Scalar(0, 255, 0, 255), 10
 						, 	cv::LINE_AA
 						);
 		}
