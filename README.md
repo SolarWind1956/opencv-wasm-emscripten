@@ -1,4 +1,4 @@
-**"Cast thy bread upon the waters: for thou shalt find it after many days"**.
+**"Cast your bread upon the waters, for you will find it after many days"**.
 **Ecclesiastes 11:1**
 
 ## 🌊 OpenCV-WASM EcoMonitor
