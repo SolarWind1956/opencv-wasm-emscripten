@@ -17,8 +17,8 @@ public:
 // Конкретный алгоритм (Canny)
 class CannyProcessor : public IProcessor {
 private:
-    int lowThreshold 	= 100;
-	int highThreshold 	= 200;
+    int lowThreshold 	= 80;
+	int highThreshold 	= 240;
 public:
     std::string process(cv::Mat& frame) override {
         cv::Mat gray, blurred, edges, kernel;
@@ -29,7 +29,7 @@ public:
         // 2. Убираем шум
         //	cv::GaussianBlur(gray, blurred, cv::Size(9, 9), 0);
 		// 2. Убираем шум (Медианный фильтр вместо Гауссова)
-		cv::medianBlur(gray, blurred, 9); // Число должно быть нечетным
+		cv::medianBlur(gray, blurred, 11); // Число должно быть нечетным
         // 3. Детектор границ
         cv::Canny(blurred, edges, lowThreshold, highThreshold);
 
