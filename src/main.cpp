@@ -68,8 +68,6 @@ public:
         edges.release();
         kernel.release();
 
-		//	Временно для отладки
-		cv::cvtColor(edges, frame, cv::COLOR_GRAY2RGBA);	
         return "Мидий найдено: " + std::to_string(count) + " | Точек: " + std::to_string(nonZero);
     }
 };
