@@ -19,23 +19,52 @@ class CannyProcessor : public IProcessor {
 private:
     int lowThreshold = 50;
 public:
-    std::string 	process(cv::Mat& frame) override 
-	{
-        cv::Mat gray, edges;
+    std::string process(cv::Mat& frame) override {
+        cv::Mat gray, blurred, edges, kernel;
         
-        // Знакомая вам логика OpenCV
+        // 1. Подготовка (из RGBA в Серый)
         cv::cvtColor(frame, gray, cv::COLOR_RGBA2GRAY);
-        cv::Canny(gray, edges, lowThreshold, 150);
-        
-        // Превращаем обратно в RGBA для отрисовки в Canvas
-        cv::cvtColor(edges, frame, cv::COLOR_GRAY2RGBA);
+         
+        // 2. Убираем шум
+        cv::GaussianBlur(gray, blurred, cv::Size(5, 5), 0);
+
+        // 3. Детектор границ
+        cv::Canny(blurred, edges, lowThreshold, lowThreshold * 3);
+
+        // 4. Морфология (закрываем дыры в контурах)
+        kernel = cv::getStructuringElement(cv::MORPH_RECT, cv::Size(3, 3));
+        cv::morphologyEx(edges, edges, cv::MORPH_CLOSE, kernel);
+
+        // 5. Поиск объектов
+        std::vector<std::vector<cv::Point>> contours;
+        cv::findContours(edges, contours, cv::RETR_EXTERNAL, cv::CHAIN_APPROX_SIMPLE);
+
+        // 6. Отрисовка: Сначала делаем фон цветным, чтобы видеть зеленые линии
+        // (Опционально: можно оставить frame как есть, если хотим рисовать по оригиналу)
+        // cv::cvtColor(gray, frame, cv::COLOR_GRAY2RGBA); 
+
+        int count = 0;
+        for (size_t i = 0; i < contours.size(); i++) {
+            double area = cv::contourArea(contours[i]);
+            if (area > 500) { 
+                // Рисуем зеленый контур (RGBA: 0, 255, 0, 255) толщиной 2 пикселя
+                cv::drawContours(frame, contours, (int)i, cv::Scalar(0, 255, 0, 255), 2);
+                count++;
+            }
+        }
 
         int nonZero = cv::countNonZero(edges);
-        return "Canny: Найдено " + std::to_string(nonZero) + " точек.";
+        
+        // ВАЖНО для Emscripten: освобождаем временные матрицы
+        gray.release(); 
+        blurred.release();
+        edges.release();
+        kernel.release();
+
+        return "Мидий найдено: " + std::to_string(count) + " | Точек: " + std::to_string(nonZero);
     }
 };
-
-// --- 3. ВАШ ОСНОВНОЙ КЛАСС (Контейнер) ---
+// --- 3. ОСНОВНОЙ КЛАСС (Контейнер) ---
 class EcoMonitor {
 private:
     IProcessor* processor; // Та самая АГРЕГАЦИЯ из диаграммы (указатель)
@@ -51,7 +80,8 @@ public:
         delete processor; 
     }
 
-    std::string processFrame(uintptr_t buffer, int width, int height) {
+    std::string processFrame(uintptr_t buffer, int width, int height) 
+	{
         // Оборачиваем входящие байты в объект cv::Mat
         cv::Mat frame(height, width, CV_8UC4, reinterpret_cast<unsigned char*>(buffer));
         
@@ -63,7 +93,7 @@ public:
     }
 };
 
-// --- 4. МОСТИК ДЛЯ JAVASCRIPT ---
+// --- МОСТИК ДЛЯ JAVASCRIPT ---
 EMSCRIPTEN_BINDINGS(eco_monitor_module) {
     class_<EcoMonitor>("EcoMonitor")
         .constructor<>()
