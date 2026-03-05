@@ -26,7 +26,7 @@ public:
         cv::cvtColor(frame, gray, cv::COLOR_RGBA2GRAY);
          
         // 2. Убираем шум
-        cv::GaussianBlur(gray, blurred, cv::Size(5, 5), 0);
+        cv::GaussianBlur(gray, blurred, cv::Size(9, 9), 0);
 
         // 3. Детектор границ
         cv::Canny(blurred, edges, lowThreshold, lowThreshold * 3);
