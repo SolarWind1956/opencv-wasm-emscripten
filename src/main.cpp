@@ -17,7 +17,8 @@ public:
 // Конкретный алгоритм (Canny)
 class CannyProcessor : public IProcessor {
 private:
-    int lowThreshold = 50;
+    int lowThreshold 	= 100;
+	int highThreshold 	= 200;
 public:
     std::string process(cv::Mat& frame) override {
         cv::Mat gray, blurred, edges, kernel;
@@ -26,10 +27,11 @@ public:
         cv::cvtColor(frame, gray, cv::COLOR_RGBA2GRAY);
          
         // 2. Убираем шум
-        cv::GaussianBlur(gray, blurred, cv::Size(9, 9), 0);
-
+        //	cv::GaussianBlur(gray, blurred, cv::Size(9, 9), 0);
+		// 2. Убираем шум (Медианный фильтр вместо Гауссова)
+		cv::medianBlur(gray, blurred, 9); // Число должно быть нечетным
         // 3. Детектор границ
-        cv::Canny(blurred, edges, lowThreshold, lowThreshold * 3);
+        cv::Canny(blurred, edges, lowThreshold, highThreshold);
 
         // 4. Морфология (закрываем дыры в контурах)
         kernel = cv::getStructuringElement(cv::MORPH_RECT, cv::Size(3, 3));
