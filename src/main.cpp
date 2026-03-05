@@ -21,6 +21,9 @@ private:
 	int highThreshold 	= 240;
 public:
     std::string process(cv::Mat& frame) override {
+		// В начале метода process добавьте:
+		cv::line(frame, cv::Point(0,0), cv::Point(width, height), cv::Scalar(255, 0, 0, 255), 10);
+
         cv::Mat gray, blurred, edges, kernel;
         
         // 1. Подготовка (из RGBA в Серый)
