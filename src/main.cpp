@@ -38,20 +38,19 @@ public:
 		// 1. Ищем линии (отрезки)
 		std::vector<cv::Vec4i> lines;
 		
-		// Параметры: edges, результат, шаг 1px, шаг 1 градус, порог 50, мин. длина 100, макс. разрыв 20
-		cv::HoughLinesP(edges, lines, 1, CV_PI/180, 50, 100, 20);
+		// Параметры: edges, результат, шаг 1px, шаг 1 градус, порог 30, мин. длина 40, макс. разрыв 15
+		// Уменьшаем параметры, чтобы поймать короткие кривые участки
+		cv::HoughLinesP(edges, lines, 1, CV_PI/180, 30, 20, 10); 
 
 		for (size_t i = 0; i < lines.size(); i++) {
-			cv::Vec4i l = lines[i];
-			// 2. Вычисляем угол каждой линии относительно горизонтали
-			double angle = atan2(l[3] - l[1], l[2] - l[0]) * 180.0 / CV_PI;
-
-			// 3. Рисуем найденные линии (красным цветом)
-			cv::line	(	frame
-					, 	cv::Point(l[0], l[1]), cv::Point(l[2], l[3])
-					, 	cv::Scalar(255, 0, 0, 255), 3
-					, 	cv::LINE_AA
-					);
+    		cv::Vec4i l = lines[i];
+    		// Рисуем на цветном кадре (frame)
+    		// Если это BGR, то (0, 0, 255) — это КРАСНЫЙ
+    		cv::line	(	frame
+						, 	cv::Point(l[0], l[1]), cv::Point(l[2], l[3])
+						,   cv::Scalar(0, 0, 255, 255), 3
+						,	 cv::LINE_AA
+						);
 		}
 		// 1. Увеличиваем ядро, чтобы "склеить" разрозненные линии в объекты
 		kernel = cv::getStructuringElement(cv::MORPH_ELLIPSE, cv::Size(11, 11));
