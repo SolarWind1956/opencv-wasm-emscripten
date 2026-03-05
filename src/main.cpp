@@ -48,7 +48,7 @@ public:
         // cv::cvtColor(gray, frame, cv::COLOR_GRAY2RGBA); 
 	
 		cv::line(frame, cv::Point(0,0), cv::Point(300, 300), cv::Scalar(0, 255, 0, 140), 20);
-		cv::rectangle(frame, cv::Rect(10, 10, 300, 300), cv::Scalar(0, 0, 255, 140), 20);
+		cv::rectangle(frame, cv::Rect(10, 10, 300, 300), cv::Scalar(0, 255, 0, 140), 20);
     
 		int count = 0;
         for (size_t i = 0; i < contours.size(); i++) {
