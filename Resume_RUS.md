@@ -41,45 +41,56 @@ Trigger: push
 ##3. Текущая структура репозитория:
 opencv-wasm-emscripten/
 
-.github/workflows/build.yml
+**.github/workflows/**
+- build.yml
 
-docs/architecture.md
+**docs/**
 
-docs/ci_pipeline.md
+- architecture.md
 
-docs/wasm_notes.md
+- ci_pipeline.md
 
-docs/research_landscape.md
+- wasm_notes.md
 
-docs/Project_Activity_Diagram.jpg - UML-diagram
+- research_landscape.md
 
-docs/Project_Class_Diagram.jpg - UML-diagram
+- Project_Activity_Diagram.jpg - UML-diagram
 
-docs/Project_Secuence_Diagram.jpg - UML-diagram
+- Project_Class_Diagram.jpg - UML-diagram
 
-include/opencv2/core.hpp
+- Project_Secuence_Diagram.jpg - UML-diagram
 
-scripts/build.py
+**include/**
 
-src/main.cpp
+- opencv2/core.hpp
 
-README.md
+**scripts/**
 
-LICENSE
+- build.py
 
-CONTRIBUTING.md
+**src/**
+ 
+- main.cpp
 
-ROADMAP.md
+**root/**
 
-ARCHITECTURE.md
+- README.md
 
-RESEARCH.md
+- LICENSE
 
-Resume_RUS.md
+- CONTRIBUTING.md
 
-index.html
+- ROADMAP.md
 
-Project_Deployment_Diagram.jpg  - UML-diagram
+- ARCHITECTURE.md
+
+- RESEARCH.md
+
+- Resume_RUS.md
+
+- index.html
+
+- Project_Deployment_Diagram.jpg  - UML-diagram
 
 ##4. Критическая точка для сборки:
 Fast Build OpenCV WASM #100: Commit 7ec21ba pushed by SolarWind1956
