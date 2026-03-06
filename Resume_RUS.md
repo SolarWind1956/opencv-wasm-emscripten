@@ -20,13 +20,13 @@ https://github.com/SolarWind1956/opencv-wasm-emscripten
 Никнейм @SolarWind1956. 
 
 ## 2. **Технический стек**:
-Язык: C++, OpenCV 4.10.0.
-Компилятор: Emscripten version: 3.x.x.
-CI: GitHub Actions
-Runner: ubuntu-latest
-Trigger: push
-Цель: Сборка легкой версии OpenCV (модули core, imgproc) в библиотеку libopencv_world.a 
-и последующая компиляция основного проекта в index.wasm.
+
+- **Язык**: C++, OpenCV 4.10.0.
+- **Компилятор**: Emscripten version: 3.x.x.
+- **CI**: GitHub Actions
+- **Runner**: ubuntu-latest
+- **Trigger**: push
+- **Цель**: Сборка легкой версии OpenCV (модули core, imgproc) в библиотеку libopencv_world.a и последующая компиляция основного проекта в index.wasm.
 
 ### 2.1. **Инварианты проекта**
 - Используем только OpenCV 4.9.0
