@@ -77,7 +77,7 @@ opencv-wasm-emscripten/
 - Project_Deployment_Diagram.jpg  - UML-diagram
 
 ##5. **Критическая точка для сборки**:
-Fast Build OpenCV WASM #100: Commit 7ec21ba pushed by SolarWind1956
+Fast Build OpenCV WASM #286: Commit efa407a pushed by SolarWind1956
 
 ##6. **Важное**:
 Проблема, связанная с усечением URL в сообщениях от чата.
