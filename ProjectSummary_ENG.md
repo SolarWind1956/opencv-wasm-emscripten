@@ -6,7 +6,7 @@ Development of a distributed, automated system for marine water pollution monito
 
 Bio-indicator approach: Utilizing mussel colonies as natural indicators of water quality.
 
-Hardware: Submerged, vacuum-sealed camera modules deployed near shellfish beds.
+Hardware: Submerged, vacuum-sealed videocamera modules deployed near shellfish beds.
 
 Core logic: Real-time video analysis and remote cloud-based sensor calibration to ensure data accuracy in underwater conditions.
 
