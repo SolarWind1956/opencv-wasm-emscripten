@@ -97,11 +97,16 @@ opencv-wasm-emscripten/
 Fast Build OpenCV WASM #100: Commit 7ec21ba pushed by SolarWind1956
 
 ##5. Важное:
-Проблема, связанная с усечением URL в сообщениях от чата.
+Проблема, связанная с усечением URL в сообщениях от чата Gemini.
 
 ##6. Текущий статус:
-Статус: SUCCESS ✅MISSION ACCOMPLISHED ✅
+
+Статус: SUCCESS ✅
+
+MISSION ACCOMPLISHED ✅
+
 Движок: OpenCV 4.9.0 (Custom Scalar Build).
+
 Стык: Emscripten Bindings (C++ ↔ JS).
 Результат: Стабильная детекция контуров (Canny) в браузере.
 
