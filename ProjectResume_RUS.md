@@ -76,7 +76,9 @@ ARCHITECTURE.md
 
 RESEARCH.md
 
-Resume_RUS.md
+ProjectResume_RUS.md
+
+ProjectSummary_ENG.md
 
 index.html
 
