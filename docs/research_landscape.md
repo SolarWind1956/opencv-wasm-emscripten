@@ -115,15 +115,17 @@ Computer vision based biomonitoring
 
 **Key ideas:**
 
--	camera-based observation of mussels
+- Monitoring mussels using video cameras placed in sealed transparent plastic containers at depth in close proximity to the observed mussel colonies.
 
--	image analysis using OpenCV
+- Image analysis using OpenCV
 
--	lightweight deployment through WebAssembly
+- Lightweight deployment via WebAssembly
 
--	browser-based visualization
+- Browser visualization
 
--	cloud-enabled monitoring architecture
+- Cloud-based monitoring architecture
+
+- Touch-based control of video recording parameters: camera lens angles, resolution, focus, shutter speed, etc., allowing biologists to select the most representative specimens for study from a large number of mussels in the observed part of the colony.
 
 Potential advantages:
 
@@ -150,3 +152,4 @@ Although many biomonitoring systems exist, most rely on specialized hardware sen
 -	open-source ecological monitoring platforms.
 
 These areas motivate the development of the OpenCV-WASM EcoMonitor project.
+
