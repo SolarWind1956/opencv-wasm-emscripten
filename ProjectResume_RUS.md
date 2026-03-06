@@ -25,6 +25,8 @@
 
 **ChatGPT (OpenAI)** - Thought Partner
 
+**Viktor Gnyubkin** - biologist
+
 **Sergej Heckel (@SolarWind1956)** - Lead Engineer & Architect
 
 ## 5. Текущая структура репозитория:
