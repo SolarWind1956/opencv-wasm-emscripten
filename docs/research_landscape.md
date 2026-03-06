@@ -111,31 +111,31 @@ Most existing biomonitoring systems rely on direct physical sensors attached to 
 
 The proposed OpenCV-WASM EcoMonitor concept explores an alternative approach:
 
-Computer vision based biomonitoring
+Proposed System Concept
 
-**Key ideas:**
+Monitoring mussels using video cameras placed inside sealed transparent containers deployed at depth in close proximity to natural mussel colonies.
 
-- Monitoring mussels using video cameras placed in sealed transparent plastic containers at depth in close proximity to the observed mussel colonies.
+**The system architecture includes:**
 
 - Image analysis using OpenCV
 
 - Lightweight deployment via WebAssembly
 
-- Browser visualization
+- Browser-based visualization
 
 - Cloud-based monitoring architecture
 
-- Touch-based control of video recording parameters: camera lens angles, resolution, focus, shutter speed, etc., allowing biologists to select the most representative specimens for study from a large number of mussels in the observed part of the colony.
+**The platform also supports touch-based control of camera parameters, including:**
 
-Potential advantages:
+- lens orientation
 
--	non-invasive measurement
+- image resolution
 
--	lower hardware complexity
+- focus
 
--	scalable remote monitoring
+- shutter speed
 
--	easier integration with web infrastructure.
+This allows biologists to select and observe the most representative specimens from large mussel colonies while adjusting imaging parameters in real time.
 
 ##	6. Research Gap
 
@@ -152,4 +152,5 @@ Although many biomonitoring systems exist, most rely on specialized hardware sen
 -	open-source ecological monitoring platforms.
 
 These areas motivate the development of the OpenCV-WASM EcoMonitor project.
+
 
