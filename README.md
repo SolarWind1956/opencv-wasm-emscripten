@@ -21,9 +21,10 @@ The project focuses on production-style automation, reproducibility, and lightwe
 - Reproducible research-style development workflow  
 
 ## 👥 The Core Team
-1. **Gemini        (Google AI)**        - Thought Partner
-2. **ChatGPT       (OpenAI)**           - Thought Partner
-3. **Sergej Heckel (@SolarWind1956)**   - Lead Engineer & Architect (C++, OpenCV).
+1. **Gemini        (Google AI)** - Thought Partner
+2. **ChatGPT       (OpenAI)** - Thought Partner
+3. **Viktor Gnyubkin** - biologist
+4. **Sergej Heckel (@SolarWind1956)**  - Lead Engineer & Architect (C++, OpenCV).
 
 ## 📚 Documentation
 
