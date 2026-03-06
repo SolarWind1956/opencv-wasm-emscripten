@@ -21,14 +21,15 @@
 
 ## 4. Участники проекта:
 
-Gemini (Google AI) - Thought Partner
+**Gemini (Google AI)** - Thought Partner
 
-ChatGPT (OpenAI) - Thought Partner
+**ChatGPT (OpenAI)** - Thought Partner
 
-Sergej Heckel (@SolarWind1956) - Lead Engineer & Architect
+**Sergej Heckel (@SolarWind1956)** - Lead Engineer & Architect
 
 ## 5. Текущая структура репозитория:
-opencv-wasm-emscripten/
+
+**opencv-wasm-emscripten/**
 
 **.github/workflows/**
 build.yml
