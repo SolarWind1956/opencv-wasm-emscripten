@@ -15,7 +15,7 @@ Version 0.7.1
 
 **Compiler**: Emscripten 3.x.x (Targeting WebAssembly).
 
-**CI/CD*: GitHub Actions (Runner: ubuntu-latest).
+**CI/CD**: GitHub Actions (Runner: ubuntu-latest).
 
 **Optimization**: Minimalist footprint — only core and imgproc modules compiled into libopencv_world.a.
 
