@@ -103,12 +103,13 @@ Fast Build OpenCV WASM #100: Commit 7ec21ba pushed by SolarWind1956
 
 ##6. **Текущий статус**:
 
-Статус: SUCCESS ✅
+- Статус: SUCCESS ✅
 
-MISSION ACCOMPLISHED ✅
+- MISSION ACCOMPLISHED ✅
 
-Движок: OpenCV 4.9.0 (Custom Scalar Build).
+- Движок: OpenCV 4.9.0 (Custom Scalar Build).
 
-Стык: Emscripten Bindings (C++ ↔ JS).
-Результат: Стабильная детекция контуров (Canny) в браузере.
+- **Стык**: Emscripten Bindings (C++ ↔ JS).
+ 
+- **Результат**: Стабильная детекция контуров (Canny) в браузере.
 
