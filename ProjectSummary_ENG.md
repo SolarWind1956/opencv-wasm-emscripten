@@ -2,7 +2,7 @@
 Version 0.7.1
 
 ## 1. Vision & Background
-Development of a distributed, automated system for marine water pollution monitoring using cloud technologies and computer vision.
+**Development of a distributed, automated system for marine water pollution monitoring using cloud technologies and computer vision**.
 
 **Bio-indicator approach**: Utilizing mussel colonies as natural indicators of water quality.
 
