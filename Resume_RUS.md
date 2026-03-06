@@ -20,8 +20,11 @@
 - Ключевой коммит: efa407a (Fast Build OpenCV WASM).
 
 ## 4. Участники проекта:
+
 Gemini (Google AI) - Thought Partner
+
 ChatGPT (OpenAI) - Thought Partner
+
 Sergej Heckel (@SolarWind1956) - Lead Engineer & Architect
 
 ## 5. Текущая структура репозитория:
@@ -51,11 +54,18 @@ main.cpp
 root/
 
 README.md
+
 LICENSE
+
 CONTRIBUTING.md
+
 ROADMAP.md
+
 ARCHITECTURE.md
+
 RESEARCH.md
+
 Resume_RUS.md
+
 index.html
 Project_Deployment_Diagram.jpg - UML-diagram
