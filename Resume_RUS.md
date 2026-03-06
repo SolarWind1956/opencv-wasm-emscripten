@@ -80,7 +80,7 @@ opencv-wasm-emscripten/
 Fast Build OpenCV WASM #286: Commit efa407a pushed by SolarWind1956
 
 ## 6. **Важное**:
-Проблема, связанная с усечением URL в сообщениях от чата.
+Проблема, связанная с **усечением URL** в сообщениях от чата.
 
 ## 7. **Текущий статус**:
 - **Статус**: SUCCESS ✅
