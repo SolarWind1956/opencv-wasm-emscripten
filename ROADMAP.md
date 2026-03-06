@@ -1,7 +1,9 @@
 ## Phase 1
 
 ✅ Edge detection
+
 ✅ Single mussel isolation
+
 ✅ Valve angle geometry
 
 ## Phase 2
