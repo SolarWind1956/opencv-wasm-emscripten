@@ -16,8 +16,8 @@
 
 ### 1.2.	**Создание пилотного проекта на базе GitHub**
 Репозиторий автора идеи Геккеля Сергея Эдгаровича (Sergej Edgar Heckel) на GitHub. 
-https://github.com/SolarWind1956/opencv-wasm-emscripten
-Никнейм @SolarWind1956. 
+https://github.com/SolarWind1956/opencv-wasm-emscripten  
+Никнейм **@SolarWind1956**. 
 
 ## 2. **Технический стек**:
 
