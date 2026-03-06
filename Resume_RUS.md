@@ -1,4 +1,4 @@
-#📋 Резюме проекта: OpenCV-WASM EcoMonitor
+# 📋 Резюме проекта: OpenCV-WASM EcoMonitor
 ## Версия резюме: 0.7
 Дата: 2026-03-05
 
