@@ -36,9 +36,8 @@ https://github.com/SolarWind1956/opencv-wasm-emscripten
 - Библиотеки статические
 
 ## 3. **Участники проекта**:
-
-1. Gemini (Google AI) 				- Thought Partner
-2. ChatGPT (OpenAI)					- Thought Partner
+1. Gemini (Google AI) - Thought Partner
+2. ChatGPT (OpenAI)	- Thought Partner
 3. Sergej Heckel (@SolarWind1956)	- Lead Engineer & Architect
 
 ## 4. **Текущая структура репозитория**:
@@ -50,68 +49,44 @@ opencv-wasm-emscripten/
 **docs/**
 
 - architecture.md
-
 - ci_pipeline.md
-
 - wasm_notes.md
-
 - research_landscape.md
-
 - Project_Activity_Diagram.jpg - UML-diagram
-
 - Project_Class_Diagram.jpg - UML-diagram
-
 - Project_Secuence_Diagram.jpg - UML-diagram
 
 **include/**
-
 - opencv2/core.hpp
 
 **scripts/**
-
 - build.py
 
 **src/**
- 
 - main.cpp
 
 **root/**
-
 - README.md
-
 - LICENSE
-
 - CONTRIBUTING.md
-
 - ROADMAP.md
-
 - ARCHITECTURE.md
-
 - RESEARCH.md
-
 - Resume_RUS.md
-
 - index.html
-
 - Project_Deployment_Diagram.jpg  - UML-diagram
 
 ##5. **Критическая точка для сборки**:
-
 Fast Build OpenCV WASM #100: Commit 7ec21ba pushed by SolarWind1956
 
 ##6. **Важное**:
-
-Проблема, связанная с усечением URL в сообщениях от чата Gemini.
+Проблема, связанная с усечением URL в сообщениях от чата.
 
 ##7. **Текущий статус**:
-
-- Статус: SUCCESS ✅
-
-- MISSION ACCOMPLISHED ✅
-
-- Движок: OpenCV 4.9.0 (Custom Scalar Build).
-
+- **Статус**: SUCCESS ✅
+- **MISSION ACCOMPLISHED** ✅
+- **Движок**: OpenCV 4.9.0 (Custom Scalar Build).
 - **Стык**: Emscripten Bindings (C++ ↔ JS).
- 
+
 - **Результат**: Стабильная детекция контуров (Canny) в браузере.
 
