@@ -12,18 +12,22 @@ Core logic: Real-time video analysis and remote cloud-based sensor calibration t
 
 ## 2. Technical Stack & Constraints
 Engine: C++ / OpenCV 4.9.0 (Custom Lightweight Build).
+
 Compiler: Emscripten 3.x.x (Targeting WebAssembly).
+
 CI/CD: GitHub Actions (Runner: ubuntu-latest).
+
 Optimization: Minimalist footprint — only core and imgproc modules compiled into libopencv_world.a.
+
 Runtime: Pure Web environment (No Node.js dependency), Static Linking.
 
 ## 3. Project Contributors
 
-AI on Google Search — Thought Partner.
+**AI on Google Search** — Thought Partner.
 
-ChatGPT (OpenAI) — Thought Partner.
+**ChatGPT (OpenAI)** — Thought Partner.
 
-Sergej Heckel (@SolarWind1956) — Lead Engineer & Architect.
+**Sergej Heckel (@SolarWind1956)** — Lead Engineer & Architect.
 
 ## 4. Current Status: SUCCESS ✅
 Milestone: Stable C++ ↔ JS communication via Emscripten Bindings.
