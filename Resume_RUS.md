@@ -30,28 +30,38 @@ Sergej Heckel (@SolarWind1956) - Lead Engineer & Architect
 ## 5. Текущая структура репозитория:
 opencv-wasm-emscripten/
 
-.github/workflows/
+**.github/workflows/**
 build.yml
 
-docs/
+**docs/**
 
 architecture.md
+
 ci_pipeline.md
+
 wasm_notes.md
+
 research_landscape.md
+
 Project_Activity_Diagram.jpg - UML-diagram
+
 Project_Class_Diagram.jpg - UML-diagram
+
 Project_Secuence_Diagram.jpg - UML-diagram
-include/
+
+**include/**
 
 opencv2/core.hpp
-scripts/
+
+**scripts/**
 
 build.py
-src/
+
+**src/**
 
 main.cpp
-root/
+
+**root/**
 
 README.md
 
@@ -68,4 +78,5 @@ RESEARCH.md
 Resume_RUS.md
 
 index.html
+
 Project_Deployment_Diagram.jpg - UML-diagram
