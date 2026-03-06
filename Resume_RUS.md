@@ -65,9 +65,21 @@ src/main.cpp
 
 README.md
 
+LICENSE
+
+CONTRIBUTING.md
+
+ROADMAP.md
+
+ARCHITECTURE.md
+
+RESEARCH.md
+
 Resume_RUS.md
 
 index.html
+
+Project_Deployment_Diagram.jpg  - UML-diagram
 
 ##4. Критическая точка для сборки:
 Fast Build OpenCV WASM #100: Commit 7ec21ba pushed by SolarWind1956
