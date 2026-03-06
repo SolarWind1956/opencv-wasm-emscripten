@@ -23,13 +23,13 @@ Version 0.7.1
 
 ## 3. Project Contributors
 
-**AI on Google Search** — Thought Partner.
+**AI on Google Search** - Thought Partner.
 
-**ChatGPT (OpenAI)** — Thought Partner.
+**ChatGPT (OpenAI)** - Thought Partner.
 
 **Viktor Gnyubkin** - biologist
 
-**Sergej Heckel (@SolarWind1956)** — Lead Engineer & Architect.
+**Sergej Heckel (@SolarWind1956)** - Lead Engineer & Architect.
 
 ## 4. Current Status: SUCCESS ✅
 **Milestone**: Stable C++ ↔ JS communication via Emscripten Bindings.
