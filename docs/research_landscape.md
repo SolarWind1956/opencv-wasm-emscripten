@@ -111,7 +111,7 @@ Most existing biomonitoring systems rely on direct physical sensors attached to 
 
 The proposed OpenCV-WASM EcoMonitor concept explores an alternative approach:
 
-Proposed System Concept
+### 5.1. Proposed System Concept
 
 Monitoring mussels using video cameras placed inside sealed transparent containers deployed at depth in close proximity to natural mussel colonies.
 
@@ -152,5 +152,6 @@ Although many biomonitoring systems exist, most rely on specialized hardware sen
 -	open-source ecological monitoring platforms.
 
 These areas motivate the development of the OpenCV-WASM EcoMonitor project.
+
 
 
