@@ -76,13 +76,13 @@ opencv-wasm-emscripten/
 - index.html
 - Project_Deployment_Diagram.jpg  - UML-diagram
 
-##5. **Критическая точка для сборки**:
+## 5. **Критическая точка для сборки**:
 Fast Build OpenCV WASM #286: Commit efa407a pushed by SolarWind1956
 
-##6. **Важное**:
+## 6. **Важное**:
 Проблема, связанная с усечением URL в сообщениях от чата.
 
-##7. **Текущий статус**:
+## 7. **Текущий статус**:
 - **Статус**: SUCCESS ✅
 - **MISSION ACCOMPLISHED** ✅
 - **Движок**: OpenCV 4.9.0 (Custom Scalar Build).
