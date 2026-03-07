@@ -1,3 +1,5 @@
+# В мире высоких технологий мы ценим не только чистый код, но и Legacy — тот фундамент, на котором все построено. 
+
 ### 🛠️ Technical stack: Engineering Heritage
 <p align="left">
   <img src="https://img.shields.io/badge/CM--2M (HP--2000)-0096D6?style=for-the-badge&logo=hp&logoColor=white" height="40" title="HP-2000" />&nbsp;
