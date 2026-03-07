@@ -9,3 +9,8 @@
 ![Геккель на ВЦ](https://github.com/user-attachments/assets/3fe1920c-5ed0-49b9-9aa0-d2f573545004)
 
 Геккель Сережа
+
+![Света Липская - невеста за монитороом](https://github.com/user-attachments/assets/fd8716a2-2343-4a74-9b5a-56bffa5c25e2)
+
+Света Липская, точнее, уже Жос!
+
