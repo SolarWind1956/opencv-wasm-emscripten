@@ -16,7 +16,8 @@
 
 Это была интересная инженерная задача: 
 
-<img width="2101" height="1370" alt="Гелиостаты северного сектора и сборочный цех" src="https://github.com/user-attachments/assets/09eb5c23-651d-4880-99b0-7e16fd3f4362" />
+<img width="1280" height="859" alt="image" src="https://github.com/user-attachments/assets/a0afe7f7-f631-4a42-995f-d2c39a0aea64" />
+
 
 полторы тысчи гелиостаов должны были точно отслеживать положение солнца и направлять поток энергии на центральный приёмник башни. 
 
