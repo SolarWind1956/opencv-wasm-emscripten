@@ -1,6 +1,6 @@
 ### 🛠️ Technical stack: Engineering Heritage
 <p align="left">
-  <img src="https://img.shields.io/badge/HP--2000-0096D6?style=for-the-badge&logo=hp&logoColor=white" height="40" title="HP-2000" />&nbsp;
+  <img src="https://img.shields.io/badge/HP--2000-0096D6?style=for-the-badge&logo=hp&logoColor=white" height="40" title="HP-2000 (CM-2M)" />&nbsp;
   <img src="https://img.shields.io/badge/PDP--11-FF6600?style=for-the-badge&logo=digital-ocean&logoColor=white" height="40" title="PDP-11" />&nbsp;
   <img src="https://img.shields.io/badge/VAX--11-005493?style=for-the-badge&logo=target&logoColor=white" height="40" title="VAX-11" />&nbsp;
   <img src="https://img.shields.io/badge/IBM--370-052FAD?style=for-the-badge&logo=ibm&logoColor=white" height="40" title="IBM-370" />&nbsp;
