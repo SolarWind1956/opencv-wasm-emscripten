@@ -2,3 +2,6 @@
 
 ![Директор СЭС-5 Дубовенко В А](https://github.com/user-attachments/assets/3af9e413-0d1d-4a20-90fd-2bb056debbd5)
 
+Старший инженер программист Геккель Сергей
+
+![Геккель на ВЦ](https://github.com/user-attachments/assets/3fe1920c-5ed0-49b9-9aa0-d2f573545004)
