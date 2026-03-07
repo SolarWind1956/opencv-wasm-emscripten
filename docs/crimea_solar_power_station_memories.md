@@ -5,7 +5,7 @@
   <img src="https://img.shields.io/badge/CM--1700 (VAX--11)-005493?style=for-the-badge&logo=target&logoColor=white" height="40" title="VAX-11" />&nbsp;
     
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fortran/fortran-original.svg" width="40" title="Fortran" />&nbsp;
-  <img src="https://img.shields.io/badge/Assembler (Мнемокод 7000)-000000?style=for-the-badge&logo=micro-strategy&logoColor=white" height="40" title="Assembler" />&nbsp;
+  <img src="https://img.shields.io/badge/Assembler (М--7000)-000000?style=for-the-badge&logo=micro-strategy&logoColor=white" height="40" title="Assembler" />&nbsp;
 </p>
 
 <p align="left">
