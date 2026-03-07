@@ -13,3 +13,5 @@
   <img src="https://img.shields.io/badge/Clipper-007ACC?style=for-the-badge&logo=fastify&logoColor=white" height="40" title="Clipper" />&nbsp;
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/delphi/delphi-original.svg" width="40" title="Delphi" />&nbsp;
 </p>
+
+Технологии меняются, но инженерные задачи остаются удивительно похожими.
