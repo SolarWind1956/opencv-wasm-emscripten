@@ -2,7 +2,7 @@
 
 ## 1. Алгоритм определения положения Солнца на небосводе
 
-solar_vector_calculating_algorithm.pdf
+solar-vector-calculating-algorithm.pdf
 
 ## 2. Алгоритм управления гелиостатми при безоблачном небе
 
