@@ -18,4 +18,7 @@
 
 Толя Гирько
 
+![Саня Подтынный](https://github.com/user-attachments/assets/9a81f5a9-fe11-4a2e-9396-1fc09bcc992a)
+
+Саша Подтынный
 
