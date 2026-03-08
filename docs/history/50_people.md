@@ -14,3 +14,8 @@
 
 Света Липская, точнее, уже Жос!
 
+![Толя Гирько](https://github.com/user-attachments/assets/f4064547-ab49-4dfa-ae1d-485ed1a56c6b)
+
+Толя Гирько
+
+
