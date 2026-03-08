@@ -22,3 +22,7 @@
 
 Саша Подтынный
 
+![Саня Артюх на блочном](https://github.com/user-attachments/assets/56c0b039-9dd9-48ed-a725-5498bd5de30e)
+
+Саша Артюх
+
