@@ -197,7 +197,7 @@
 
 После исчезновения этих факторов гелиостат автоматически возвращался к управлению по датчику отражённого луча.
 
-<img width="1024" height="1536" alt="Комби" src="https://github.com/user-attachments/assets/0b51cd7b-279d-4d8b-89e6-9130743168ed" />
+<img width="983" height="1259" alt="Комби" src="https://github.com/user-attachments/assets/70812a7e-5553-4671-b700-966c0d49f8f7" />
 
 ### IV. Алгоритм идентификации неисправности оптических датчиков
 
