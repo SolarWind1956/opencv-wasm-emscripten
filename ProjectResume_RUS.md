@@ -21,13 +21,13 @@
 
 ## 4. Участники проекта:
 
-**Gemini (Google AI)** - Thought Partner
+**Gemini (Google AI)** - Партнер по обмену идеями, консультант по реализации
 
-**ChatGPT (OpenAI)** - Thought Partner
+**ChatGPT (OpenAI)** - Партнер по обмену идеями, консультант по реализации
 
-**Viktor Gnyubkin** - biologist
+**Viktor Gnyubkin** - ученый биолог
 
-**Sergej Heckel (@SolarWind1956)** - Lead Engineer & Architect
+**Sergej Heckel (@SolarWind1956)** - Автор идеи и архитектор проекта
 
 ## 5. Текущая структура репозитория:
 
