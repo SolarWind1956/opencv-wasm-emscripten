@@ -33,19 +33,7 @@ public:
 		// 2. Убираем шум (Медианный фильтр вместо Гауссова)
 		cv::medianBlur(gray, blurred, 7); // Число должно быть нечетным
 
-		// Выводим цитату из вашего списка
-		std::string text = "DOROGU OSILIT IDUSHIY"; 
-		cv::putText	(	blurred, 
-						text, 
-						cv::Point(50, 250),        	// Координаты (x, y)
-						cv::FONT_HERSHEY_SIMPLEX,  	// Шрифт (классика OpenCV)
-						1.0,                       	// Масштаб
-						cv::Scalar(255, 0, 0),     	// Цвет (красный, чтобы было видно)
-						2                        	// Толщина линий
-					);
-
-		
-        // 3. Детектор границ
+		// 3. Детектор границ
         cv::Canny(blurred, edges, lowThreshold, highThreshold);
 
 		// 1. Ищем линии (отрезки)
@@ -64,6 +52,18 @@ public:
 						, 	cv::LINE_AA
 						);
 		}
+		// Выводим цитату из вашего списка
+		std::string text = "DOROGU OSILIT IDUSHIY"; 
+			cv::putText	(	frame, 
+						text, 
+						cv::Point(50, 250),        	// Координаты (x, y)
+						cv::FONT_HERSHEY_SIMPLEX,  	// Шрифт (классика OpenCV)
+						1.0,                       	// Масштаб
+						cv::Scalar(255, 0, 0),     	// Цвет (красный, чтобы было видно)
+						2                        	// Толщина линий
+					);
+
+		
 		// 1. Увеличиваем ядро, чтобы "склеить" разрозненные линии в объекты
 		kernel = cv::getStructuringElement(cv::MORPH_ELLIPSE, cv::Size(11, 11));
 
