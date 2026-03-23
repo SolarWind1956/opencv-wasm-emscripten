@@ -21,18 +21,6 @@ private:
 	int highThreshold 	= 150;
 public:
     std::string process(cv::Mat& frame) override {
-
-	
-		// Выводим цитату из вашего списка
-		std::string text = "DOROGU OSILIT IDUSHIY"; 
-		cv::putText	(	frame, 
-						text, 
-						cv::Point(50, 250),        	// Координаты (x, y)
-						cv::FONT_HERSHEY_SIMPLEX,  	// Шрифт (классика OpenCV)
-						1.0,                       	// Масштаб
-						cv::Scalar(255, 0, 0),     	// Цвет (красный, чтобы было видно)
-						2                        	// Толщина линий
-					);
 		
         cv::Mat gray, blurred, edges, kernel;
         
@@ -44,7 +32,19 @@ public:
 		
 		// 2. Убираем шум (Медианный фильтр вместо Гауссова)
 		cv::medianBlur(gray, blurred, 7); // Число должно быть нечетным
-		 
+
+		// Выводим цитату из вашего списка
+		std::string text = "DOROGU OSILIT IDUSHIY"; 
+		cv::putText	(	blurred, 
+						text, 
+						cv::Point(50, 250),        	// Координаты (x, y)
+						cv::FONT_HERSHEY_SIMPLEX,  	// Шрифт (классика OpenCV)
+						1.0,                       	// Масштаб
+						cv::Scalar(255, 0, 0),     	// Цвет (красный, чтобы было видно)
+						2                        	// Толщина линий
+					);
+
+		
         // 3. Детектор границ
         cv::Canny(blurred, edges, lowThreshold, highThreshold);
 
