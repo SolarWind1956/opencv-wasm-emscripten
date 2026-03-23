@@ -82,7 +82,7 @@ public:
         }
 		// Выводим цитату из вашего списка
 		std::string text = "DOROGU OSILIT IDUSHIY"; 
-		cv::putText	(	edges, 
+		cv::putText	(	frame, 
 						text, 
 						cv::Point(50, 250),        	// Координаты (x, y)
 						cv::FONT_HERSHEY_SIMPLEX,  	// Шрифт (классика OpenCV)
