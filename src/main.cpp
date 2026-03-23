@@ -29,6 +29,7 @@ public:
          
         // 2. Убираем шум
         //	cv::GaussianBlur(gray, blurred, cv::Size(9, 9), 0);
+		
 		// 2. Убираем шум (Медианный фильтр вместо Гауссова)
 		cv::medianBlur(gray, blurred, 7); // Число должно быть нечетным
 		 
@@ -80,7 +81,18 @@ public:
         }
 
         int nonZero = cv::countNonZero(edges);
-        
+
+		// Выводим цитату из вашего списка
+		std::string text = "DOROGU OSILIT IDUSHIY"; 
+		cv::putText	(	frame, 
+						text, 
+						cv::Point(50, 250),        	// Координаты (x, y)
+						cv::FONT_HERSHEY_SIMPLEX,  	// Шрифт (классика OpenCV)
+						1.0,                       	// Масштаб
+						cv::Scalar(0, 255, 0),     	// Цвет (зеленый, как в терминале)
+						2                        	// Толщина линий
+					);
+		
         // ВАЖНО для Emscripten: освобождаем временные матрицы
         gray.release(); 
         blurred.release();
