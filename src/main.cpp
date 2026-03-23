@@ -46,24 +46,13 @@ public:
 		for (size_t i = 0; i < lines.size(); i++) {
     		cv::Vec4i l = lines[i];
     		// Рисуем ЯРКО-ЗЕЛЕНЫМ (0, 255, 0) и толщиной 10, чтобы точно заметить
-    		cv::line	(	frame
+    		cv::line	(	edges
 						,	cv::Point(l[0], l[1]), cv::Point(l[2], l[3])
 						, 	cv::Scalar(0, 255, 0, 255), 10
 						, 	cv::LINE_AA
 						);
 		}
-		// Выводим цитату из вашего списка
-		std::string text = "DOROGU OSILIT IDUSHIY"; 
-			cv::putText	(	frame, 
-						text, 
-						cv::Point(50, 250),        	// Координаты (x, y)
-						cv::FONT_HERSHEY_SIMPLEX,  	// Шрифт (классика OpenCV)
-						1.0,                       	// Масштаб
-						cv::Scalar(255, 0, 0),     	// Цвет (красный, чтобы было видно)
-						2                        	// Толщина линий
-					);
-
-		
+	
 		// 1. Увеличиваем ядро, чтобы "склеить" разрозненные линии в объекты
 		kernel = cv::getStructuringElement(cv::MORPH_ELLIPSE, cv::Size(11, 11));
 
@@ -91,7 +80,18 @@ public:
                 count++;
             }
         }
+		// Выводим цитату из вашего списка
+		std::string text = "DOROGU OSILIT IDUSHIY"; 
+		cv::putText	(	edges, 
+						text, 
+						cv::Point(50, 250),        	// Координаты (x, y)
+						cv::FONT_HERSHEY_SIMPLEX,  	// Шрифт (классика OpenCV)
+						1.0,                       	// Масштаб
+						cv::Scalar(255, 0, 0),     	// Цвет (красный, чтобы было видно)
+						2                        	// Толщина линий
+					);
 
+		
         int nonZero = cv::countNonZero(edges);
 	
         // ВАЖНО для Emscripten: освобождаем временные матрицы
