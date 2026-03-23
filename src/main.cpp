@@ -22,6 +22,18 @@ private:
 public:
     std::string process(cv::Mat& frame) override {
 
+	
+		// Выводим цитату из вашего списка
+		std::string text = "DOROGU OSILIT IDUSHIY"; 
+		cv::putText	(	frame, 
+						text, 
+						cv::Point(50, 250),        	// Координаты (x, y)
+						cv::FONT_HERSHEY_SIMPLEX,  	// Шрифт (классика OpenCV)
+						1.0,                       	// Масштаб
+						cv::Scalar(255, 0, 0),     	// Цвет (красный, чтобы было видно)
+						2                        	// Толщина линий
+					);
+		
         cv::Mat gray, blurred, edges, kernel;
         
         // 1. Подготовка (из RGBA в Серый)
@@ -81,18 +93,7 @@ public:
         }
 
         int nonZero = cv::countNonZero(edges);
-
-		// Выводим цитату из вашего списка
-		std::string text = "DOROGU OSILIT IDUSHIY"; 
-		cv::putText	(	frame, 
-						text, 
-						cv::Point(50, 250),        	// Координаты (x, y)
-						cv::FONT_HERSHEY_SIMPLEX,  	// Шрифт (классика OpenCV)
-						1.0,                       	// Масштаб
-						cv::Scalar(255, 0, 0),     	// Цвет (красный, чтобы было видно)
-						2                        	// Толщина линий
-					);
-		
+	
         // ВАЖНО для Emscripten: освобождаем временные матрицы
         gray.release(); 
         blurred.release();
